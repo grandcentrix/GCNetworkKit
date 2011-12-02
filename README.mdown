@@ -1,0 +1,46 @@
+# GCNetworkKit
+
+GCNetworkKit is a helpful set of classes for interacting with a http server.
+All classes make use of ARC.
+
+## Content
+
+### GCDataTransformer
+In this file you can find several methods to transform response data to something useful.
+
+* JSON to NSObject
+* NSData to NSString
+* ...
+
+### GCNetworkAPIWrapper
+Subclass it to have a foundation for a client based wrapper of an http server.
+You get a network queue, fast request creation methods and much more.
+
+### GCNetworkCenter
+This class notifies you about connection changes.
+
+### GCNetworkRequestCache
+This is a simple class for caching/loading requests.
+
+### GCNetworkRequestOperation
+This is a NSOperation wrapper for GCNetworkRequest.
+
+### GCNetworkRequestQueue
+This is NSOperationQueue wrapper for network requests.
+
+### GCNetworkRequest
+The base network request including:
+
+* ability to keep connection to the server when app enters background
+* block based callback functions
+* network activity indicator handling
+* ...
+
+### GCNetworkDownloadRequest
+Perfect for downloading large files as they don't get cached in memory. This class directly writes downloaded data to disk and deletes it once the callback function is finished.
+
+### GCNetworkFormRequest
+Perfect for uploading big files as it makes use of an input and output stream.
+
+### GCNetworkImageRequest
+This is subclass of GCNetworkRequest for downloading images.

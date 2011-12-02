@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C0ED78A144C69780078D776 /* NSString+GCNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED773144C69780078D776 /* NSString+GCNetworkRequest.m */; };
+		2C0ED78B144C69780078D776 /* GCDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED775144C69780078D776 /* GCDataTransformer.m */; };
+		2C0ED78C144C69780078D776 /* GCNetworkAPIWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED777144C69780078D776 /* GCNetworkAPIWrapper.m */; };
+		2C0ED78D144C69780078D776 /* GCNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED779144C69780078D776 /* GCNetworkCenter.m */; };
+		2C0ED78E144C69780078D776 /* GCNetworkRequestCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */; };
+		2C0ED78F144C69780078D776 /* GCNetworkRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */; };
+		2C0ED790144C69780078D776 /* GCNetworkRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED780144C69780078D776 /* GCNetworkRequestQueue.m */; };
+		2C0ED791144C69780078D776 /* GCNetworkDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED783144C69780078D776 /* GCNetworkDownloadRequest.m */; };
+		2C0ED792144C69780078D776 /* GCNetworkFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED785144C69780078D776 /* GCNetworkFormRequest.m */; };
+		2C0ED793144C69780078D776 /* GCNetworkImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED787144C69780078D776 /* GCNetworkImageRequest.m */; };
+		2C0ED794144C69780078D776 /* GCNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED789144C69780078D776 /* GCNetworkRequest.m */; };
+		2C0ED7AA144C6B2A0078D776 /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED7A1144C6B290078D776 /* TwitterTableViewController.m */; };
+		2C0ED7AC144C6B2A0078D776 /* GCNetworkKitDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED7A5144C6B290078D776 /* GCNetworkKitDemoAppDelegate.m */; };
+		2C0ED7AD144C6B2A0078D776 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED7A6144C6B290078D776 /* main.m */; };
+		2C7C5614141D1BAA0021942E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7C5613141D1BAA0021942E /* UIKit.framework */; };
+		2C7C5616141D1BAA0021942E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7C5615141D1BAA0021942E /* Foundation.framework */; };
+		2C7C5618141D1BAA0021942E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7C5617141D1BAA0021942E /* CoreGraphics.framework */; };
+		2C83D2EE14541C78002EE3E4 /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C83D2ED14541C78002EE3E4 /* desk.png */; };
+		2CFB8E99141D23D900E20E7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFB8E98141D23D900E20E7C /* SystemConfiguration.framework */; };
+		2CFB8E9B141D23E300E20E7C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFB8E9A141D23E300E20E7C /* MobileCoreServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C0ED772144C69780078D776 /* NSString+GCNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GCNetworkRequest.h"; sourceTree = "<group>"; };
+		2C0ED773144C69780078D776 /* NSString+GCNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GCNetworkRequest.m"; sourceTree = "<group>"; };
+		2C0ED774144C69780078D776 /* GCDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDataTransformer.h; sourceTree = "<group>"; };
+		2C0ED775144C69780078D776 /* GCDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataTransformer.m; sourceTree = "<group>"; };
+		2C0ED776144C69780078D776 /* GCNetworkAPIWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkAPIWrapper.h; sourceTree = "<group>"; };
+		2C0ED777144C69780078D776 /* GCNetworkAPIWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkAPIWrapper.m; sourceTree = "<group>"; };
+		2C0ED778144C69780078D776 /* GCNetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkCenter.h; sourceTree = "<group>"; };
+		2C0ED779144C69780078D776 /* GCNetworkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkCenter.m; sourceTree = "<group>"; };
+		2C0ED77A144C69780078D776 /* GCNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkKit.h; sourceTree = "<group>"; };
+		2C0ED77B144C69780078D776 /* GCNetworkRequestCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestCache.h; sourceTree = "<group>"; };
+		2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestCache.m; sourceTree = "<group>"; };
+		2C0ED77D144C69780078D776 /* GCNetworkRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestOperation.h; sourceTree = "<group>"; };
+		2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestOperation.m; sourceTree = "<group>"; };
+		2C0ED77F144C69780078D776 /* GCNetworkRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestQueue.h; sourceTree = "<group>"; };
+		2C0ED780144C69780078D776 /* GCNetworkRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestQueue.m; sourceTree = "<group>"; };
+		2C0ED782144C69780078D776 /* GCNetworkDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkDownloadRequest.h; sourceTree = "<group>"; };
+		2C0ED783144C69780078D776 /* GCNetworkDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkDownloadRequest.m; sourceTree = "<group>"; };
+		2C0ED784144C69780078D776 /* GCNetworkFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkFormRequest.h; sourceTree = "<group>"; };
+		2C0ED785144C69780078D776 /* GCNetworkFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkFormRequest.m; sourceTree = "<group>"; };
+		2C0ED786144C69780078D776 /* GCNetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkImageRequest.h; sourceTree = "<group>"; };
+		2C0ED787144C69780078D776 /* GCNetworkImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkImageRequest.m; sourceTree = "<group>"; };
+		2C0ED788144C69780078D776 /* GCNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequest.h; sourceTree = "<group>"; };
+		2C0ED789144C69780078D776 /* GCNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequest.m; sourceTree = "<group>"; };
+		2C0ED7A0144C6B290078D776 /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
+		2C0ED7A1144C6B290078D776 /* TwitterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterTableViewController.m; sourceTree = "<group>"; };
+		2C0ED7A2144C6B290078D776 /* GCNetworkKitDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GCNetworkKitDemo-Info.plist"; path = "GCNetworkKitDemo/GCNetworkKitDemo-Info.plist"; sourceTree = "<group>"; };
+		2C0ED7A3144C6B290078D776 /* GCNetworkKitDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GCNetworkKitDemo-Prefix.pch"; path = "GCNetworkKitDemo/GCNetworkKitDemo-Prefix.pch"; sourceTree = "<group>"; };
+		2C0ED7A4144C6B290078D776 /* GCNetworkKitDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCNetworkKitDemoAppDelegate.h; path = GCNetworkKitDemo/GCNetworkKitDemoAppDelegate.h; sourceTree = "<group>"; };
+		2C0ED7A5144C6B290078D776 /* GCNetworkKitDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNetworkKitDemoAppDelegate.m; path = GCNetworkKitDemo/GCNetworkKitDemoAppDelegate.m; sourceTree = "<group>"; };
+		2C0ED7A6144C6B290078D776 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GCNetworkKitDemo/main.m; sourceTree = "<group>"; };
+		2C7C560F141D1BAA0021942E /* GCNetworkKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCNetworkKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C7C5613141D1BAA0021942E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2C7C5615141D1BAA0021942E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2C7C5617141D1BAA0021942E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2C83D2ED14541C78002EE3E4 /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desk.png; sourceTree = "<group>"; };
+		2CFB8E98141D23D900E20E7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CFB8E9A141D23E300E20E7C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C7C560C141D1BAA0021942E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CFB8E9B141D23E300E20E7C /* MobileCoreServices.framework in Frameworks */,
+				2CFB8E99141D23D900E20E7C /* SystemConfiguration.framework in Frameworks */,
+				2C7C5614141D1BAA0021942E /* UIKit.framework in Frameworks */,
+				2C7C5616141D1BAA0021942E /* Foundation.framework in Frameworks */,
+				2C7C5618141D1BAA0021942E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C0ED770144C69780078D776 /* GCNetworkKit */ = {
+			isa = PBXGroup;
+			children = (
+				2C0ED771144C69780078D776 /* Categories */,
+				2C0ED781144C69780078D776 /* Requests */,
+				2C0ED774144C69780078D776 /* GCDataTransformer.h */,
+				2C0ED775144C69780078D776 /* GCDataTransformer.m */,
+				2C0ED776144C69780078D776 /* GCNetworkAPIWrapper.h */,
+				2C0ED777144C69780078D776 /* GCNetworkAPIWrapper.m */,
+				2C0ED778144C69780078D776 /* GCNetworkCenter.h */,
+				2C0ED779144C69780078D776 /* GCNetworkCenter.m */,
+				2C0ED77A144C69780078D776 /* GCNetworkKit.h */,
+				2C0ED77B144C69780078D776 /* GCNetworkRequestCache.h */,
+				2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */,
+				2C0ED77D144C69780078D776 /* GCNetworkRequestOperation.h */,
+				2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */,
+				2C0ED77F144C69780078D776 /* GCNetworkRequestQueue.h */,
+				2C0ED780144C69780078D776 /* GCNetworkRequestQueue.m */,
+			);
+			name = GCNetworkKit;
+			path = ../GCNetworkKit;
+			sourceTree = "<group>";
+		};
+		2C0ED771144C69780078D776 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2C0ED772144C69780078D776 /* NSString+GCNetworkRequest.h */,
+				2C0ED773144C69780078D776 /* NSString+GCNetworkRequest.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		2C0ED781144C69780078D776 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2C0ED782144C69780078D776 /* GCNetworkDownloadRequest.h */,
+				2C0ED783144C69780078D776 /* GCNetworkDownloadRequest.m */,
+				2C0ED784144C69780078D776 /* GCNetworkFormRequest.h */,
+				2C0ED785144C69780078D776 /* GCNetworkFormRequest.m */,
+				2C0ED786144C69780078D776 /* GCNetworkImageRequest.h */,
+				2C0ED787144C69780078D776 /* GCNetworkImageRequest.m */,
+				2C0ED788144C69780078D776 /* GCNetworkRequest.h */,
+				2C0ED789144C69780078D776 /* GCNetworkRequest.m */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2C0ED79E144C6B290078D776 /* GCNetworkKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2C0ED79F144C6B290078D776 /* Classes */,
+			);
+			path = GCNetworkKitDemo;
+			sourceTree = "<group>";
+		};
+		2C0ED79F144C6B290078D776 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2C0ED7A0144C6B290078D776 /* TwitterTableViewController.h */,
+				2C0ED7A1144C6B290078D776 /* TwitterTableViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2C0ED7B0144C6B3B0078D776 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C83D2ED14541C78002EE3E4 /* desk.png */,
+				2C0ED7A2144C6B290078D776 /* GCNetworkKitDemo-Info.plist */,
+				2C0ED7A3144C6B290078D776 /* GCNetworkKitDemo-Prefix.pch */,
+				2C0ED7A4144C6B290078D776 /* GCNetworkKitDemoAppDelegate.h */,
+				2C0ED7A5144C6B290078D776 /* GCNetworkKitDemoAppDelegate.m */,
+				2C0ED7A6144C6B290078D776 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C7C5604141D1BA90021942E = {
+			isa = PBXGroup;
+			children = (
+				2C0ED770144C69780078D776 /* GCNetworkKit */,
+				2C0ED79E144C6B290078D776 /* GCNetworkKitDemo */,
+				2C0ED7B0144C6B3B0078D776 /* Supporting Files */,
+				2C7C5612141D1BAA0021942E /* Frameworks */,
+				2C7C5610141D1BAA0021942E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C7C5610141D1BAA0021942E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C7C560F141D1BAA0021942E /* GCNetworkKitDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C7C5612141D1BAA0021942E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CFB8E9A141D23E300E20E7C /* MobileCoreServices.framework */,
+				2CFB8E98141D23D900E20E7C /* SystemConfiguration.framework */,
+				2C7C5613141D1BAA0021942E /* UIKit.framework */,
+				2C7C5615141D1BAA0021942E /* Foundation.framework */,
+				2C7C5617141D1BAA0021942E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C7C560E141D1BAA0021942E /* GCNetworkKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C7C562A141D1BAA0021942E /* Build configuration list for PBXNativeTarget "GCNetworkKitDemo" */;
+			buildPhases = (
+				2C7C560B141D1BAA0021942E /* Sources */,
+				2C7C560C141D1BAA0021942E /* Frameworks */,
+				2C7C560D141D1BAA0021942E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GCNetworkKitDemo;
+			productName = GCNetworkKitDemo;
+			productReference = 2C7C560F141D1BAA0021942E /* GCNetworkKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C7C5606141D1BA90021942E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = AEG;
+			};
+			buildConfigurationList = 2C7C5609141D1BA90021942E /* Build configuration list for PBXProject "GCNetworkKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C7C5604141D1BA90021942E;
+			productRefGroup = 2C7C5610141D1BAA0021942E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C7C560E141D1BAA0021942E /* GCNetworkKitDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C7C560D141D1BAA0021942E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C83D2EE14541C78002EE3E4 /* desk.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C7C560B141D1BAA0021942E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0ED78A144C69780078D776 /* NSString+GCNetworkRequest.m in Sources */,
+				2C0ED78B144C69780078D776 /* GCDataTransformer.m in Sources */,
+				2C0ED78C144C69780078D776 /* GCNetworkAPIWrapper.m in Sources */,
+				2C0ED78D144C69780078D776 /* GCNetworkCenter.m in Sources */,
+				2C0ED78E144C69780078D776 /* GCNetworkRequestCache.m in Sources */,
+				2C0ED78F144C69780078D776 /* GCNetworkRequestOperation.m in Sources */,
+				2C0ED790144C69780078D776 /* GCNetworkRequestQueue.m in Sources */,
+				2C0ED791144C69780078D776 /* GCNetworkDownloadRequest.m in Sources */,
+				2C0ED792144C69780078D776 /* GCNetworkFormRequest.m in Sources */,
+				2C0ED793144C69780078D776 /* GCNetworkImageRequest.m in Sources */,
+				2C0ED794144C69780078D776 /* GCNetworkRequest.m in Sources */,
+				2C0ED7AA144C6B2A0078D776 /* TwitterTableViewController.m in Sources */,
+				2C0ED7AC144C6B2A0078D776 /* GCNetworkKitDemoAppDelegate.m in Sources */,
+				2C0ED7AD144C6B2A0078D776 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2C7C5628141D1BAA0021942E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Giulio Petek (6Q5PS57B83)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "14448A3C-7D12-4F7C-BAE7-8EA14DCEB163";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2C7C5629141D1BAA0021942E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C7C562B141D1BAA0021942E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GCNetworkKitDemo/GCNetworkKitDemo-Prefix.pch";
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "GCNetworkKitDemo/GCNetworkKitDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2C7C562C141D1BAA0021942E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GCNetworkKitDemo/GCNetworkKitDemo-Prefix.pch";
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "GCNetworkKitDemo/GCNetworkKitDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C7C5609141D1BA90021942E /* Build configuration list for PBXProject "GCNetworkKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C7C5628141D1BAA0021942E /* Debug */,
+				2C7C5629141D1BAA0021942E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C7C562A141D1BAA0021942E /* Build configuration list for PBXNativeTarget "GCNetworkKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C7C562B141D1BAA0021942E /* Debug */,
+				2C7C562C141D1BAA0021942E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C7C5606141D1BA90021942E /* Project object */;
+}

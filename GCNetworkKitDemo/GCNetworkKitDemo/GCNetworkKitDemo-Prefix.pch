@@ -1,0 +1,18 @@
+//
+// Prefix header for all source files of the 'GCNetworkKitDemo' target in the 'GCNetworkKitDemo' project
+//
+//  Created by Giulio Petek on 11.09.11.
+//  Copyright 2011 GrandCentrix. All rights reserved.
+//
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

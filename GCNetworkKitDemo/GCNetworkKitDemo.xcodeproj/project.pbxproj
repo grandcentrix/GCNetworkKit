@@ -25,6 +25,7 @@
 		2C7C5616141D1BAA0021942E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7C5615141D1BAA0021942E /* Foundation.framework */; };
 		2C7C5618141D1BAA0021942E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7C5617141D1BAA0021942E /* CoreGraphics.framework */; };
 		2C83D2EE14541C78002EE3E4 /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C83D2ED14541C78002EE3E4 /* desk.png */; };
+		2CA4976614E13C5E00766AD4 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CA4976514E13C5E00766AD4 /* LICENSE.txt */; };
 		2CFB8E99141D23D900E20E7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFB8E98141D23D900E20E7C /* SystemConfiguration.framework */; };
 		2CFB8E9B141D23E300E20E7C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFB8E9A141D23E300E20E7C /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		2C7C5615141D1BAA0021942E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C7C5617141D1BAA0021942E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C83D2ED14541C78002EE3E4 /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desk.png; sourceTree = "<group>"; };
+		2CA4976514E13C5E00766AD4 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		2CFB8E98141D23D900E20E7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CFB8E9A141D23E300E20E7C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -165,6 +167,7 @@
 		2C7C5604141D1BA90021942E = {
 			isa = PBXGroup;
 			children = (
+				2CA4976514E13C5E00766AD4 /* LICENSE.txt */,
 				2C0ED770144C69780078D776 /* GCNetworkKit */,
 				2C0ED79E144C6B290078D776 /* GCNetworkKitDemo */,
 				2C0ED7B0144C6B3B0078D776 /* Supporting Files */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C83D2EE14541C78002EE3E4 /* desk.png in Resources */,
+				2CA4976614E13C5E00766AD4 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

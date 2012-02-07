@@ -5,7 +5,7 @@ All classes make use of ARC.
 
 ## License
 
-GCNetworkKit is licensed under the Apache License, Version 2.
+GCNetworkKit is licensed under the Apache License, Version 2.0.
 
 ## Content
 

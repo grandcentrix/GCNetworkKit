@@ -3,6 +3,10 @@
 GCNetworkKit is a helpful set of classes for interacting with a http server.
 All classes make use of ARC.
 
+## License
+
+GCNetworkKit is licensed under the Apache License, Version 2.
+
 ## Content
 
 ### GCDataTransformer

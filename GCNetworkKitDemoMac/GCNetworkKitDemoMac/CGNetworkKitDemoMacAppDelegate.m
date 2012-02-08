@@ -1,9 +1,9 @@
 //
-//  GCDataTransformer.h
+//  CGNetworkKitDemoMacAppDelegate.m
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //
-//  Copyright 2012 Giulio Petek
+//  Copyright 2012 Alex Zielenski
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,16 +19,15 @@
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#import <Foundation/Foundation.h>
+#import "CGNetworkKitDemoMacAppDelegate.h"
 
-/* Transform JSON data to a foundation object (NSArray, NSDictionary ...) */
-extern void TransformJSONDataToNSObject(NSData *data, void (^callback)(id object, NSError *error));
-
-/* Transform raw data to a NSString */
-extern void TransformNSDataToNSString(NSData *data, NSStringEncoding encoding, void (^callback)(NSString *string));
-
-/* Transform raw data to an UIImage */
-extern void TransformNSDataToImage(NSData *data, void (^callback)(id image));
-
-/* Transform plist data to a foundation object (NSArray, NSDictionary ...) */
-extern void TransformPlistDataToNSObject(NSData *data, void (^callback)(id object, NSError *error));
+@implementation CGNetworkKitDemoMacAppDelegate
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+	tableController = [[TwitterTableViewController alloc] initWithNibName:@"TableView" bundle:nil];
+	tableController.view.frame = [(NSView*)self.window.contentView bounds];
+	[self.window.contentView addSubview:tableController.view];
+}
+- (void)applicationWillTerminate:(NSNotification *)notification {
+	tableController = nil;
+}
+@end

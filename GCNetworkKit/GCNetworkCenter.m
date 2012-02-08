@@ -133,7 +133,9 @@ static NSInteger __count = 0;
 + (void)_refreshActivityCount {
     @synchronized(self) {
         __count = MAX(__count, 0);
+#if TARGET_OS_IPHONE == 1
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:__count > 0];
+#endif
     }
 }
 

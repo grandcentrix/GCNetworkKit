@@ -57,14 +57,17 @@ void TransformNSDataToNSString(NSData *data, NSStringEncoding encoding, void (^c
 }
 
 #pragma mark NSData -> UIImage
-
-void TransformNSDataToUIImage(NSData *data, void (^callback)(UIImage *image)) {
+void TransformNSDataToImage(NSData *data, void (^callback)(id image)) {
     if (!callback)
         return;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
-        UIImage *image = [UIImage imageWithData:data];
-        
+		id image = nil;
+#if TARGET_OS_IPHONE == 1
+        image = [UIImage imageWithData:data];
+#else
+		image = [[NSImage alloc] initWithData:data]; // no autorelease – arc
+#endif
         dispatch_sync(dispatch_get_main_queue(), ^(void) {
             callback(image);
         });

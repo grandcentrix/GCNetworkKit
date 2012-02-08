@@ -1,9 +1,9 @@
 //
-//  GCDataTransformer.h
+//  GCTableCellView.h
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //
-//  Copyright 2012 Giulio Petek
+//  Copyright 2012 Alex Zielenski
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,16 +19,8 @@
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
-/* Transform JSON data to a foundation object (NSArray, NSDictionary ...) */
-extern void TransformJSONDataToNSObject(NSData *data, void (^callback)(id object, NSError *error));
-
-/* Transform raw data to a NSString */
-extern void TransformNSDataToNSString(NSData *data, NSStringEncoding encoding, void (^callback)(NSString *string));
-
-/* Transform raw data to an UIImage */
-extern void TransformNSDataToImage(NSData *data, void (^callback)(id image));
-
-/* Transform plist data to a foundation object (NSArray, NSDictionary ...) */
-extern void TransformPlistDataToNSObject(NSData *data, void (^callback)(id object, NSError *error));
+@interface GCTableCellView : NSTableCellView
+@property (nonatomic, retain, readwrite) IBOutlet NSTextField *detailTextLabel;
+@end

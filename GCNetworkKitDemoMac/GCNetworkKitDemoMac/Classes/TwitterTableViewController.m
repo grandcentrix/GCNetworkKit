@@ -134,7 +134,6 @@
     GCNetworkDownloadRequest *request = [GCNetworkDownloadRequest requestWithURL:url];
     request.autoDeleteTMPFile = NO;
     request.loadWhileScrolling = YES;
-    request.continueInBackground = YES;
     request.progressHandler = ^(CGFloat progress){
         NSLog(@"Progress on downloading podcast: %f.", progress);
     };

@@ -121,7 +121,6 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @synthesize progressHandler = _progressHandler;
 @synthesize requestMethod = _requestMethod;
 @synthesize expirationHandler = _expirationHandler;
-@synthesize continueInBackground = _continueInBackground;
 @synthesize loadWhileScrolling = _loadWhileScrolling;
 @synthesize showNetworkIndicator = _showNetworkIndicator;
 @synthesize _connection;
@@ -133,6 +132,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @synthesize _queryValues;
 #if TARGET_OS_IPHONE==1
 @synthesize taskIdentifier = _taskIdentifier;
+@synthesize continueInBackground = _continueInBackground;
 #endif
 #pragma mark Init
 
@@ -148,7 +148,9 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
         self._url = url;
         self.timeoutInterval = 60.0f;
         self.requestMethod = GCNetworkRequestMethodGET;
+#if TARGET_OS_IPHONE == 1
         self.continueInBackground = NO;
+#endif
         self.loadWhileScrolling = NO;
         self.showNetworkIndicator = YES;
         
@@ -344,16 +346,15 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 - (NSString *)urlHash {
     return [[[self _buildURL] absoluteString] md5Hash];
 }
-
-- (void)setContinueInBackground:(BOOL)_bool {    
 #if TARGET_OS_IPHONE == 1
+- (void)setContinueInBackground:(BOOL)_bool {    
     if (_bool && [[UIDevice currentDevice] isMultitaskingSupported])
         _continueInBackground = YES;
     else
         _continueInBackground = NO;
-#endif
 
 }
+#endif
 
 - (BOOL)isRunning {
     return _requestFlags.started;

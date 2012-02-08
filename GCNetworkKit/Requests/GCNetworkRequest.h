@@ -48,7 +48,6 @@ typedef void (^GCNetworkRequestExpirationBlock)();
 @interface GCNetworkRequest : NSObject
 
 @property (nonatomic, readwrite) NSTimeInterval timeoutInterval;
-@property (nonatomic, readwrite, getter = isContinuingInBackground) BOOL continueInBackground;
 @property (nonatomic, readwrite, getter = isLoadingWhileScrolling) BOOL loadWhileScrolling;
 @property (nonatomic, readwrite, getter = isShowingNetworkIndicator) BOOL showNetworkIndicator;
 @property (nonatomic, readwrite) GCNetworkRequestMethod requestMethod;
@@ -56,7 +55,9 @@ typedef void (^GCNetworkRequestExpirationBlock)();
 @property (nonatomic, readonly) NSString *urlHash;
 @property (nonatomic, readonly) NSString *requestHash;
 @property (nonatomic, strong, readonly) NSURL *baseURL;
-
+#if TARGET_OS_IPHONE == 1
+@property (nonatomic, readwrite, getter = isContinuingInBackground) BOOL continueInBackground;
+#endif
 /* Callbacks */
 @property (nonatomic, copy, readwrite) GCNetworkRequestResponseBlock responseHandler;
 @property (nonatomic, copy, readwrite) GCNetworkRequestCompletionBlock completionHandler;

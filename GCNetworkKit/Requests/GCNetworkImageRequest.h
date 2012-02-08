@@ -21,7 +21,7 @@
 
 #import "GCNetworkRequest.h"
 
-typedef void (^GCNetworkImageRequestCompletionBlock)(UIImage *image);
+typedef void (^GCNetworkImageRequestCompletionBlock)(id image);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // GCNetworkImageRequest

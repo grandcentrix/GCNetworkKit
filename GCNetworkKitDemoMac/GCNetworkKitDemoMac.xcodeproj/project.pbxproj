@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAC722AF14E30B08006A5D8C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC722AE14E30B08006A5D8C /* Cocoa.framework */; };
+		FAC722B914E30B08006A5D8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAC722B714E30B08006A5D8C /* InfoPlist.strings */; };
+		FAC722BB14E30B08006A5D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722BA14E30B08006A5D8C /* main.m */; };
+		FAC722BF14E30B08006A5D8C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FAC722BD14E30B08006A5D8C /* Credits.rtf */; };
+		FAC722C214E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722C114E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.m */; };
+		FAC722E914E30B24006A5D8C /* NSString+GCNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D214E30B24006A5D8C /* NSString+GCNetworkRequest.m */; };
+		FAC722EA14E30B24006A5D8C /* GCDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D414E30B24006A5D8C /* GCDataTransformer.m */; };
+		FAC722EB14E30B24006A5D8C /* GCNetworkAPIWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D614E30B24006A5D8C /* GCNetworkAPIWrapper.m */; };
+		FAC722EC14E30B24006A5D8C /* GCNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */; };
+		FAC722ED14E30B24006A5D8C /* GCNetworkRequestCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */; };
+		FAC722EE14E30B24006A5D8C /* GCNetworkRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */; };
+		FAC722EF14E30B24006A5D8C /* GCNetworkRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DF14E30B24006A5D8C /* GCNetworkRequestQueue.m */; };
+		FAC722F014E30B24006A5D8C /* GCNetworkDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722E214E30B24006A5D8C /* GCNetworkDownloadRequest.m */; };
+		FAC722F114E30B24006A5D8C /* GCNetworkFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722E414E30B24006A5D8C /* GCNetworkFormRequest.m */; };
+		FAC722F214E30B24006A5D8C /* GCNetworkImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722E614E30B24006A5D8C /* GCNetworkImageRequest.m */; };
+		FAC722F314E30B24006A5D8C /* GCNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722E814E30B24006A5D8C /* GCNetworkRequest.m */; };
+		FAC722F514E30E2F006A5D8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC722F414E30E2F006A5D8C /* SystemConfiguration.framework */; };
+		FAC722F714E30E34006A5D8C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC722F614E30E34006A5D8C /* CoreServices.framework */; };
+		FAC7230214E3138C006A5D8C /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC7230114E3138C006A5D8C /* desk.png */; };
+		FAC7230B14E31D2A006A5D8C /* GCTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7230814E31D2A006A5D8C /* GCTableCellView.m */; };
+		FAC7230C14E31D2A006A5D8C /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7230A14E31D2A006A5D8C /* TwitterTableViewController.m */; };
+		FAC7230D14E31D48006A5D8C /* TableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC7230F14E31D48006A5D8C /* TableView.xib */; };
+		FAC7231014E31D4F006A5D8C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC7231214E31D4F006A5D8C /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FAC722AA14E30B08006A5D8C /* GCNetworkKitDemoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCNetworkKitDemoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC722AE14E30B08006A5D8C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FAC722B114E30B08006A5D8C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FAC722B214E30B08006A5D8C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FAC722B314E30B08006A5D8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAC722B614E30B08006A5D8C /* GCNetworkKitDemoMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GCNetworkKitDemoMac-Info.plist"; sourceTree = "<group>"; };
+		FAC722B814E30B08006A5D8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAC722BA14E30B08006A5D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAC722BC14E30B08006A5D8C /* GCNetworkKitDemoMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCNetworkKitDemoMac-Prefix.pch"; sourceTree = "<group>"; };
+		FAC722BE14E30B08006A5D8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		FAC722C014E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGNetworkKitDemoMacAppDelegate.h; sourceTree = "<group>"; };
+		FAC722C114E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGNetworkKitDemoMacAppDelegate.m; sourceTree = "<group>"; };
+		FAC722D114E30B24006A5D8C /* NSString+GCNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GCNetworkRequest.h"; sourceTree = "<group>"; };
+		FAC722D214E30B24006A5D8C /* NSString+GCNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GCNetworkRequest.m"; sourceTree = "<group>"; };
+		FAC722D314E30B24006A5D8C /* GCDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDataTransformer.h; sourceTree = "<group>"; };
+		FAC722D414E30B24006A5D8C /* GCDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataTransformer.m; sourceTree = "<group>"; };
+		FAC722D514E30B24006A5D8C /* GCNetworkAPIWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkAPIWrapper.h; sourceTree = "<group>"; };
+		FAC722D614E30B24006A5D8C /* GCNetworkAPIWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkAPIWrapper.m; sourceTree = "<group>"; };
+		FAC722D714E30B24006A5D8C /* GCNetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkCenter.h; sourceTree = "<group>"; };
+		FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkCenter.m; sourceTree = "<group>"; };
+		FAC722D914E30B24006A5D8C /* GCNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkKit.h; sourceTree = "<group>"; };
+		FAC722DA14E30B24006A5D8C /* GCNetworkRequestCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestCache.h; sourceTree = "<group>"; };
+		FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestCache.m; sourceTree = "<group>"; };
+		FAC722DC14E30B24006A5D8C /* GCNetworkRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestOperation.h; sourceTree = "<group>"; };
+		FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestOperation.m; sourceTree = "<group>"; };
+		FAC722DE14E30B24006A5D8C /* GCNetworkRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestQueue.h; sourceTree = "<group>"; };
+		FAC722DF14E30B24006A5D8C /* GCNetworkRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestQueue.m; sourceTree = "<group>"; };
+		FAC722E114E30B24006A5D8C /* GCNetworkDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkDownloadRequest.h; sourceTree = "<group>"; };
+		FAC722E214E30B24006A5D8C /* GCNetworkDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkDownloadRequest.m; sourceTree = "<group>"; };
+		FAC722E314E30B24006A5D8C /* GCNetworkFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkFormRequest.h; sourceTree = "<group>"; };
+		FAC722E414E30B24006A5D8C /* GCNetworkFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkFormRequest.m; sourceTree = "<group>"; };
+		FAC722E514E30B24006A5D8C /* GCNetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkImageRequest.h; sourceTree = "<group>"; };
+		FAC722E614E30B24006A5D8C /* GCNetworkImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkImageRequest.m; sourceTree = "<group>"; };
+		FAC722E714E30B24006A5D8C /* GCNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequest.h; sourceTree = "<group>"; };
+		FAC722E814E30B24006A5D8C /* GCNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequest.m; sourceTree = "<group>"; };
+		FAC722F414E30E2F006A5D8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FAC722F614E30E34006A5D8C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		FAC7230114E3138C006A5D8C /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = desk.png; path = ../../GCNetworkKitDemo/desk.png; sourceTree = "<group>"; };
+		FAC7230714E31D2A006A5D8C /* GCTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableCellView.h; path = Classes/GCTableCellView.h; sourceTree = "<group>"; };
+		FAC7230814E31D2A006A5D8C /* GCTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableCellView.m; path = Classes/GCTableCellView.m; sourceTree = "<group>"; };
+		FAC7230914E31D2A006A5D8C /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterTableViewController.h; path = Classes/TwitterTableViewController.h; sourceTree = "<group>"; };
+		FAC7230A14E31D2A006A5D8C /* TwitterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterTableViewController.m; path = Classes/TwitterTableViewController.m; sourceTree = "<group>"; };
+		FAC7230E14E31D48006A5D8C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TableView.xib; sourceTree = "<group>"; };
+		FAC7231114E31D4F006A5D8C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAC722A714E30B08006A5D8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC722F714E30E34006A5D8C /* CoreServices.framework in Frameworks */,
+				FAC722F514E30E2F006A5D8C /* SystemConfiguration.framework in Frameworks */,
+				FAC722AF14E30B08006A5D8C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAC7229F14E30B08006A5D8C = {
+			isa = PBXGroup;
+			children = (
+				FAC722CF14E30B24006A5D8C /* GCNetworkKit */,
+				FAC722B414E30B08006A5D8C /* GCNetworkKitDemoMac */,
+				FAC722AD14E30B08006A5D8C /* Frameworks */,
+				FAC722AB14E30B08006A5D8C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAC722AB14E30B08006A5D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722AA14E30B08006A5D8C /* GCNetworkKitDemoMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAC722AD14E30B08006A5D8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722F614E30E34006A5D8C /* CoreServices.framework */,
+				FAC722F414E30E2F006A5D8C /* SystemConfiguration.framework */,
+				FAC722AE14E30B08006A5D8C /* Cocoa.framework */,
+				FAC722B014E30B08006A5D8C /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAC722B014E30B08006A5D8C /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722B114E30B08006A5D8C /* AppKit.framework */,
+				FAC722B214E30B08006A5D8C /* CoreData.framework */,
+				FAC722B314E30B08006A5D8C /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FAC722B414E30B08006A5D8C /* GCNetworkKitDemoMac */ = {
+			isa = PBXGroup;
+			children = (
+				FAC7230614E31CEA006A5D8C /* Classes */,
+				FAC722B514E30B08006A5D8C /* Supporting Files */,
+			);
+			path = GCNetworkKitDemoMac;
+			sourceTree = "<group>";
+		};
+		FAC722B514E30B08006A5D8C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722C014E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.h */,
+				FAC722C114E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.m */,
+				FAC722B614E30B08006A5D8C /* GCNetworkKitDemoMac-Info.plist */,
+				FAC722BC14E30B08006A5D8C /* GCNetworkKitDemoMac-Prefix.pch */,
+				FAC722BA14E30B08006A5D8C /* main.m */,
+				FAC722BD14E30B08006A5D8C /* Credits.rtf */,
+				FAC7230114E3138C006A5D8C /* desk.png */,
+				FAC7231314E31D6F006A5D8C /* Interface */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAC722CF14E30B24006A5D8C /* GCNetworkKit */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722D014E30B24006A5D8C /* Categories */,
+				FAC722E014E30B24006A5D8C /* Requests */,
+				FAC722D314E30B24006A5D8C /* GCDataTransformer.h */,
+				FAC722D414E30B24006A5D8C /* GCDataTransformer.m */,
+				FAC722D514E30B24006A5D8C /* GCNetworkAPIWrapper.h */,
+				FAC722D614E30B24006A5D8C /* GCNetworkAPIWrapper.m */,
+				FAC722D714E30B24006A5D8C /* GCNetworkCenter.h */,
+				FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */,
+				FAC722D914E30B24006A5D8C /* GCNetworkKit.h */,
+				FAC722DA14E30B24006A5D8C /* GCNetworkRequestCache.h */,
+				FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */,
+				FAC722DC14E30B24006A5D8C /* GCNetworkRequestOperation.h */,
+				FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */,
+				FAC722DE14E30B24006A5D8C /* GCNetworkRequestQueue.h */,
+				FAC722DF14E30B24006A5D8C /* GCNetworkRequestQueue.m */,
+			);
+			name = GCNetworkKit;
+			path = ../GCNetworkKit;
+			sourceTree = "<group>";
+		};
+		FAC722D014E30B24006A5D8C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722D114E30B24006A5D8C /* NSString+GCNetworkRequest.h */,
+				FAC722D214E30B24006A5D8C /* NSString+GCNetworkRequest.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FAC722E014E30B24006A5D8C /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722E114E30B24006A5D8C /* GCNetworkDownloadRequest.h */,
+				FAC722E214E30B24006A5D8C /* GCNetworkDownloadRequest.m */,
+				FAC722E314E30B24006A5D8C /* GCNetworkFormRequest.h */,
+				FAC722E414E30B24006A5D8C /* GCNetworkFormRequest.m */,
+				FAC722E514E30B24006A5D8C /* GCNetworkImageRequest.h */,
+				FAC722E614E30B24006A5D8C /* GCNetworkImageRequest.m */,
+				FAC722E714E30B24006A5D8C /* GCNetworkRequest.h */,
+				FAC722E814E30B24006A5D8C /* GCNetworkRequest.m */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		FAC7230614E31CEA006A5D8C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FAC7230914E31D2A006A5D8C /* TwitterTableViewController.h */,
+				FAC7230A14E31D2A006A5D8C /* TwitterTableViewController.m */,
+				FAC7230714E31D2A006A5D8C /* GCTableCellView.h */,
+				FAC7230814E31D2A006A5D8C /* GCTableCellView.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		FAC7231314E31D6F006A5D8C /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				FAC722B714E30B08006A5D8C /* InfoPlist.strings */,
+				FAC7230F14E31D48006A5D8C /* TableView.xib */,
+				FAC7231214E31D4F006A5D8C /* MainMenu.xib */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAC722A914E30B08006A5D8C /* GCNetworkKitDemoMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC722C814E30B09006A5D8C /* Build configuration list for PBXNativeTarget "GCNetworkKitDemoMac" */;
+			buildPhases = (
+				FAC722A614E30B08006A5D8C /* Sources */,
+				FAC722A714E30B08006A5D8C /* Frameworks */,
+				FAC722A814E30B08006A5D8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GCNetworkKitDemoMac;
+			productName = GCNetworkKitDemoMac;
+			productReference = FAC722AA14E30B08006A5D8C /* GCNetworkKitDemoMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAC722A114E30B08006A5D8C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Alex Zielenski";
+			};
+			buildConfigurationList = FAC722A414E30B08006A5D8C /* Build configuration list for PBXProject "GCNetworkKitDemoMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FAC7229F14E30B08006A5D8C;
+			productRefGroup = FAC722AB14E30B08006A5D8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAC722A914E30B08006A5D8C /* GCNetworkKitDemoMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAC722A814E30B08006A5D8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC722B914E30B08006A5D8C /* InfoPlist.strings in Resources */,
+				FAC722BF14E30B08006A5D8C /* Credits.rtf in Resources */,
+				FAC7231014E31D4F006A5D8C /* MainMenu.xib in Resources */,
+				FAC7230D14E31D48006A5D8C /* TableView.xib in Resources */,
+				FAC7230214E3138C006A5D8C /* desk.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAC722A614E30B08006A5D8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC722BB14E30B08006A5D8C /* main.m in Sources */,
+				FAC722C214E30B08006A5D8C /* CGNetworkKitDemoMacAppDelegate.m in Sources */,
+				FAC722E914E30B24006A5D8C /* NSString+GCNetworkRequest.m in Sources */,
+				FAC722EA14E30B24006A5D8C /* GCDataTransformer.m in Sources */,
+				FAC722EB14E30B24006A5D8C /* GCNetworkAPIWrapper.m in Sources */,
+				FAC722EC14E30B24006A5D8C /* GCNetworkCenter.m in Sources */,
+				FAC722ED14E30B24006A5D8C /* GCNetworkRequestCache.m in Sources */,
+				FAC722EE14E30B24006A5D8C /* GCNetworkRequestOperation.m in Sources */,
+				FAC722EF14E30B24006A5D8C /* GCNetworkRequestQueue.m in Sources */,
+				FAC722F014E30B24006A5D8C /* GCNetworkDownloadRequest.m in Sources */,
+				FAC722F114E30B24006A5D8C /* GCNetworkFormRequest.m in Sources */,
+				FAC722F214E30B24006A5D8C /* GCNetworkImageRequest.m in Sources */,
+				FAC722F314E30B24006A5D8C /* GCNetworkRequest.m in Sources */,
+				FAC7230B14E31D2A006A5D8C /* GCTableCellView.m in Sources */,
+				FAC7230C14E31D2A006A5D8C /* TwitterTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FAC722B714E30B08006A5D8C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC722B814E30B08006A5D8C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FAC722BD14E30B08006A5D8C /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC722BE14E30B08006A5D8C /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		FAC7230F14E31D48006A5D8C /* TableView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC7230E14E31D48006A5D8C /* en */,
+			);
+			name = TableView.xib;
+			sourceTree = "<group>";
+		};
+		FAC7231214E31D4F006A5D8C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC7231114E31D4F006A5D8C /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAC722C614E30B09006A5D8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FAC722C714E30B09006A5D8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FAC722C914E30B09006A5D8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GCNetworkKitDemoMac/GCNetworkKitDemoMac-Prefix.pch";
+				INFOPLIST_FILE = "GCNetworkKitDemoMac/GCNetworkKitDemoMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FAC722CA14E30B09006A5D8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GCNetworkKitDemoMac/GCNetworkKitDemoMac-Prefix.pch";
+				INFOPLIST_FILE = "GCNetworkKitDemoMac/GCNetworkKitDemoMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAC722A414E30B08006A5D8C /* Build configuration list for PBXProject "GCNetworkKitDemoMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC722C614E30B09006A5D8C /* Debug */,
+				FAC722C714E30B09006A5D8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC722C814E30B09006A5D8C /* Build configuration list for PBXNativeTarget "GCNetworkKitDemoMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC722C914E30B09006A5D8C /* Debug */,
+				FAC722CA14E30B09006A5D8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAC722A114E30B08006A5D8C /* Project object */;
+}

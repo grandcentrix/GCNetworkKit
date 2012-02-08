@@ -33,7 +33,7 @@
 
 - (GCNetworkRequestCompletionBlock)completionHandler {
     GCNetworkRequestCompletionBlock block = ^(NSData *downloadedData){   
-        TransformNSDataToUIImage(downloadedData, ^(UIImage *image){
+        TransformNSDataToImage(downloadedData, ^(id image){
             self.imageCompletionHandler(image); 
         });
     };

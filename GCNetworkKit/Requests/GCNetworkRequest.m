@@ -321,7 +321,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection { 
-    if (_statusCode > 400) {
+    if (_statusCode < 400 && _statusCode > 200) {
         if (self.errorHandler)
             self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], self._downloadedData);
     }

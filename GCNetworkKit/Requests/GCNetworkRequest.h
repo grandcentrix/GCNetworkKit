@@ -37,7 +37,7 @@ typedef enum {
 @class GCNetworkRequest;
 typedef void (^GCNetworkRequestResponseBlock)(NSHTTPURLResponse *response);
 typedef void (^GCNetworkRequestCompletionBlock)(NSData *responseData);
-typedef void (^GCNetworkRequestErrorBlock)(NSError *error);
+typedef void (^GCNetworkRequestErrorBlock)(NSError *error, NSData *responseData);
 typedef void (^GCNetworkRequestProgressBlock)(CGFloat progress);
 typedef void (^GCNetworkRequestExpirationBlock)();
 

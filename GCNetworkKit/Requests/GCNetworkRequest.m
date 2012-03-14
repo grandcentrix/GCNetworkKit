@@ -43,8 +43,9 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @property (nonatomic, strong, readwrite) NSURL *_url;
 @property (nonatomic, strong, readwrite) NSMutableDictionary *_headerFields;
 @property (nonatomic, strong, readwrite) NSMutableDictionary *_queryValues;
-@property (nonatomic, readwrite) long long _downloadedContentLength;
-@property (nonatomic, readwrite) long long _expectedContentLength;
+@property (nonatomic, unsafe_unretained, readwrite) NSInteger _statusCode;
+@property (nonatomic, unsafe_unretained, readwrite) long long _downloadedContentLength;
+@property (nonatomic, unsafe_unretained, readwrite) long long _expectedContentLength;
 #if TARGET_OS_IPHONE == 1
 @property (nonatomic, readwrite) UIBackgroundTaskIdentifier taskIdentifier;
 #endif
@@ -130,10 +131,13 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @synthesize _expectedContentLength;
 @synthesize _headerFields;
 @synthesize _queryValues;
+@synthesize _statusCode;
+
 #if TARGET_OS_IPHONE==1
 @synthesize taskIdentifier = _taskIdentifier;
 @synthesize continueInBackground = _continueInBackground;
 #endif
+
 #pragma mark Init
 
 + (id)requestWithURL:(NSURL *)url {
@@ -184,7 +188,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
             
             return;
         }
-#if TARGET_OS_IPHONE == 1 // continue in background is not neede in osx
+#if TARGET_OS_IPHONE == 1 // continue in background is not needed in osx
 
         if (self.continueInBackground) {
 			__weak GCNetworkRequest *weakReference = self;
@@ -289,15 +293,9 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
     if (self.responseHandler)
         self.responseHandler(httpResponse);
 
-    NSInteger statusCode = [httpResponse statusCode];
-    if (statusCode < 400) {
-        self._downloadedData = [NSMutableData data];
-        // To not use _expectedContentLenght is much safer
-    }
-    else {
-        NSError *htmlError = [GCNetworkRequest htmlErrorForCode:statusCode];
-        [self connection:self._connection didFailWithError:htmlError];
-    }
+    self._downloadedData = [NSMutableData data];
+
+    _statusCode = [httpResponse statusCode];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {    
@@ -317,15 +315,21 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
     [self._connection cancel];
 
     if (self.errorHandler)
-        self.errorHandler(error);
+        self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], nil);
 
     [self _cleanUp];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection { 
-    if (self.completionHandler)
-        self.completionHandler(self._downloadedData); 
-    
+    if (_statusCode > 400) {
+        if (self.errorHandler)
+            self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], self._downloadedData);
+    }
+    else {
+        if (self.completionHandler)
+            self.completionHandler(self._downloadedData); 
+    }
+       
     [self _cleanUp];
 }
 

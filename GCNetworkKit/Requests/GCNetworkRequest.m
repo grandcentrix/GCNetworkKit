@@ -321,13 +321,13 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection { 
-    if (_statusCode < 400 && _statusCode > 200) {
-        if (self.errorHandler)
-            self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], self._downloadedData);
+    if ([[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)] containsIndex:_statusCode]) {
+        if (self.completionHandler)
+            self.completionHandler(self._downloadedData);  
     }
     else {
-        if (self.completionHandler)
-            self.completionHandler(self._downloadedData); 
+        if (self.errorHandler)
+            self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], self._downloadedData);
     }
        
     [self _cleanUp];

@@ -22,8 +22,6 @@
 #import "GCNetworkFormRequest.h"
 #import "NSString+GCNetworkRequest.h"
 
-const NSString *HTMLBoundary = @"s0M3HtM11BouN3Ary";
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // GCNetworkFormRequest()
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -34,6 +32,7 @@ const NSString *HTMLBoundary = @"s0M3HtM11BouN3Ary";
 @property (nonatomic, strong, readwrite) NSOperationQueue *_writeQueue;
 @property (nonatomic, strong, readwrite) NSString *_tmpPath;
 @property (nonatomic, strong, readonly) NSString *_formattedBoundary;
+@property (nonatomic, strong, readonly) NSString *_htmlBoundary;
 @property (nonatomic, readwrite, getter = _isFirstBoundary) BOOL _firstBoundary;
 @property (nonatomic, readwrite) BOOL _cancelled;
 
@@ -55,6 +54,7 @@ const NSString *HTMLBoundary = @"s0M3HtM11BouN3Ary";
 @synthesize _formattedBoundary;
 @synthesize _writeQueue;
 @synthesize _cancelled;
+@synthesize _htmlBoundary = __htmlBoundary;
 @synthesize uploadProgressHandler = _uploadProgressHandler;
 
 #pragma mark Init
@@ -112,10 +112,10 @@ const NSString *HTMLBoundary = @"s0M3HtM11BouN3Ary";
     if (self._isFirstBoundary) {
         self._firstBoundary = NO;
         
-        return [NSString stringWithFormat:@"--%@\r\n", HTMLBoundary];
+        return [NSString stringWithFormat:@"--%@\r\n", self._htmlBoundary];
     }
     
-    return [NSString stringWithFormat:@"\r\n--%@\r\n", HTMLBoundary];
+    return [NSString stringWithFormat:@"\r\n--%@\r\n", self._htmlBoundary];
 }
 
 - (void)_appendBodyString:(NSString *)string {
@@ -252,6 +252,22 @@ const NSString *HTMLBoundary = @"s0M3HtM11BouN3Ary";
 
 #pragma mark @properties
 
+- (NSString *)_htmlBoundary {
+    if (__htmlBoundary)
+        return __htmlBoundary;
+    
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    unichar randomLetter1 = random() % (90 - 65 + 1) + 65;
+    unichar randomLetter2 = random() % (90 - 65 + 1) + 65;
+    __htmlBoundary = [[NSString stringWithFormat:@"%c_%d_%c", randomLetter1, interval, randomLetter2] md5Hash];
+    __htmlBoundary = [NSString stringWithFormat:@"htmlBoundaryStart%@htmlBoundaryEnd", __htmlBoundary];
+    NSLog(@"%@", __htmlBoundary);
+    NSLog(@"%c", randomLetter2);
+    NSLog(@"%c", randomLetter1);
+
+    return __htmlBoundary;
+}
+
 - (void)setRequestMethod:(GCNetworkRequestMethod)requestMethod {
     return;
 }
@@ -296,7 +312,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 }
 
 - (NSMutableURLRequest *)modifiedRequest:(NSMutableURLRequest *)request {
-    [self _appendBodyString:[NSString stringWithFormat:@"\r\n--%@--\r\n", HTMLBoundary]];
+    [self _appendBodyString:[NSString stringWithFormat:@"\r\n--%@--\r\n", self._htmlBoundary]];
     
     [self._tmpFileWriterStream close];
     self._tmpFileWriterStream = nil;
@@ -305,7 +321,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self._tmpPath error:nil];
     NSInteger size = [[fileAttributes objectForKey:NSFileSize] intValue];
     
-    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", HTMLBoundary] forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", self._htmlBoundary] forHTTPHeaderField:@"Content-Type"];
     [request setValue:[NSString stringWithFormat:@"%d", size] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPMethod:@"POST"];
 

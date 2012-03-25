@@ -79,6 +79,7 @@
     
     // Cancel the request with our hash
     [[GCNetworkRequestQueue sharedQueue] cancelRequestWithHash:self.requestHash];
+    self.requestHash = nil;
 }
 
 

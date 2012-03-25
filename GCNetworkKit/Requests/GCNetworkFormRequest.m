@@ -261,9 +261,6 @@
     unichar randomLetter2 = random() % (90 - 65 + 1) + 65;
     __htmlBoundary = [[NSString stringWithFormat:@"%c_%d_%c", randomLetter1, interval, randomLetter2] md5Hash];
     __htmlBoundary = [NSString stringWithFormat:@"htmlBoundaryStart%@htmlBoundaryEnd", __htmlBoundary];
-    NSLog(@"%@", __htmlBoundary);
-    NSLog(@"%c", randomLetter2);
-    NSLog(@"%c", randomLetter1);
 
     return __htmlBoundary;
 }

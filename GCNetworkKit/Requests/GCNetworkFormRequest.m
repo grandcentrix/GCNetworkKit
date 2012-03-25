@@ -257,8 +257,8 @@
         return __htmlBoundary;
     
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
-    unichar randomLetter1 = random() % (90 - 65 + 1) + 65;
-    unichar randomLetter2 = random() % (90 - 65 + 1) + 65;
+    unichar randomLetter1 = random() % 26 + 65;
+    unichar randomLetter2 = random() % 26 + 65;
     __htmlBoundary = [[NSString stringWithFormat:@"%c_%d_%c", randomLetter1, interval, randomLetter2] md5Hash];
     __htmlBoundary = [NSString stringWithFormat:@"htmlBoundaryStart%@htmlBoundaryEnd", __htmlBoundary];
 

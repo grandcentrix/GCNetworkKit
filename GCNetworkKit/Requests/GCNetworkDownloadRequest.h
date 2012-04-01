@@ -31,7 +31,7 @@ typedef void (^GCNetworkDownloadRequestCompletionBlock)(NSString *filePath);
 
 @property (nonatomic, copy, readwrite) GCNetworkDownloadRequestCompletionBlock downloadCompletionHandler;
 
-/* Default is YES. Auto deletes temorary downloaded file after callback is done */
+// Default is YES. Auto deletes tmp downloaded file after callback is done
 @property (nonatomic, readwrite) BOOL autoDeleteTMPFile;
 
 - (void)deleteTMPFile;

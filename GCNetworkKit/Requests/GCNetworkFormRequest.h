@@ -29,7 +29,7 @@
 
 @property (nonatomic, copy, readwrite) GCNetworkRequestProgressBlock uploadProgressHandler;
 
-/* Add post data */
+// Add post data
 - (void)addPostString:(NSString *)string forKey:(NSString *)key;
 - (void)addFile:(NSString *)filePath forKey:(NSString *)key;
 - (void)addFile:(NSString *)path forKey:(NSString *)key andName:(NSString *)name;

@@ -32,10 +32,8 @@ typedef void (^GCNetworkAPIWrapperStringCallback)(NSString *string, NSError *err
 @class GCNetworkRequestQueue, GCNetworkRequest, GCNetworkFormRequest, GCNetworkDownloadRequest;
 @interface GCNetworkAPIWrapper : NSObject
 
-/* A NSOperationQueue handling all network requests */
 @property (nonatomic, strong, readonly) GCNetworkRequestQueue *networkQueue;
 
-/* Singleton */
 + (id)sharedWrapper;
 
 /* Check whether the main reachpoint is available */

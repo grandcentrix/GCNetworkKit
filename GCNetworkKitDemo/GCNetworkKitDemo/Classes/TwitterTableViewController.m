@@ -62,6 +62,9 @@
     // Add a query value to the request (q = Search Term)
     [request setQueryValue:@"apple" forKey:@"q"];
     
+    // Let's grab 50 items
+    [request setQueryValue:@"rpp" forKey:@"50"];
+
     // Set completion Handler
     request.completionHandler = ^(NSData *responseData){ 
         [weakReference proceedTweets:responseData];
@@ -89,7 +92,7 @@
     [super viewDidLoad];
     
     // Non concurrent => Serialized
-    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentOperations:1];
+    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentRequests:1];
 
 
 // Various tests
@@ -140,6 +143,55 @@
     [self loadTweets];
 }
 
+#pragma mark - Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
+    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];        
+        cell.detailTextLabel.numberOfLines = 0; // Infinite
+    }
+    
+    NSDictionary *tweet = [self.tweets objectAtIndex:indexPath.row];
+    cell.textLabel.text = [tweet objectForKey:@"from_user"];
+    cell.detailTextLabel.text = [tweet objectForKey:@"text"];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // You may want to cache the heights got a better performance. Do this with either an NSCache or an
+    // NSMutableDictionary. Don't forget to clear it on reload if you use the indexpaths as keys.
+    
+    NSDictionary *tweet = [self.tweets objectAtIndex:indexPath.row];
+    NSString *text = [tweet objectForKey:@"text"];
+    
+    CGSize expectedLabelSize = [text sizeWithFont:[UIFont systemFontOfSize:14]
+                                constrainedToSize:CGSizeMake(320, MAXFLOAT)
+                                    lineBreakMode:UILineBreakModeWordWrap];
+    
+    return expectedLabelSize.height + 50.0f;
+}
+
+#pragma mark Memory
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
+    [self cancelLoadingTweets];
+}
+
+- (void)dealloc {
+    [self cancelLoadingTweets];
+}
+
 #pragma mark - Tests
 
 + (void)downloadPodcastAtURL:(NSURL *)url {
@@ -188,7 +240,7 @@
 
 + (void)shortenURL:(NSURL *)url {
     NSURL *apiURL = [NSURL URLWithString:@"http://tinyurl.com/api-create.php"];
-
+    
     GCNetworkRequest *request = [GCNetworkRequest requestWithURL:apiURL];
     [request setQueryValue:[url absoluteString] forKey:@"url"];
     request.completionHandler = ^(NSData *responseData){
@@ -197,44 +249,6 @@
         });
     };
     [request start];
-}
-
-#pragma mark - Datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tweets.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
-    
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];        
-        cell.detailTextLabel.numberOfLines = 4;
-    }
-    
-    NSDictionary *tweet = [self.tweets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [tweet objectForKey:@"from_user"];
-    cell.detailTextLabel.text = [tweet objectForKey:@"text"];
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0f;
-}
-
-#pragma mark Memory
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    [self cancelLoadingTweets];
-}
-
-- (void)dealloc {
-    [self cancelLoadingTweets];
 }
 
 @end

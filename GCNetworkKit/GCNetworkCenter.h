@@ -24,9 +24,9 @@
 extern NSString *const GCNetworkCenterConnectionDidChangeNotification;
 
 typedef enum {
-	GCNoConnection = 0,
-	GCWiFiConnection = 1,
-    GCWWANConnection = 2,
+	GCNoConnection = 0, // No internet connection available.
+	GCWiFiConnection = 1, // WiFi connection available.
+    GCWWANConnection = 2, // Carrier connection available (3g etc.)
     GCUnknownConnection = 3
 } GCNetworkCenterConnectionType;
 
@@ -40,13 +40,11 @@ typedef enum {
 @property (nonatomic, assign, readonly) BOOL isConnected;
 @property (nonatomic, assign, readonly) GCNetworkCenterConnectionType connectionType;
 
-/* Singleton */
 + (GCNetworkCenter *)defaultCenter;
 
-/* Check if a host is reachable */
 + (BOOL)hostIsReachable:(NSString *)host;
 
-/* Statusbar network indicator handling */
+// Statusbar network indicator handling.
 + (void)addNetworkActivity;
 + (void)removeNetworkActivity;
 

@@ -55,10 +55,11 @@ typedef void (^GCNetworkRequestExpirationBlock)();
 @property (nonatomic, readonly) NSString *urlHash;
 @property (nonatomic, readonly) NSString *requestHash;
 @property (nonatomic, strong, readonly) NSURL *baseURL;
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
 @property (nonatomic, readwrite, getter = isContinuingInBackground) BOOL continueInBackground;
 #endif
-/* Callbacks */
+
+// Callbacks
 @property (nonatomic, copy, readwrite) GCNetworkRequestResponseBlock responseHandler;
 @property (nonatomic, copy, readwrite) GCNetworkRequestCompletionBlock completionHandler;
 @property (nonatomic, copy, readwrite) GCNetworkRequestErrorBlock errorHandler;
@@ -71,13 +72,17 @@ typedef void (^GCNetworkRequestExpirationBlock)();
 - (void)start;
 - (void)cancel;
 
-/* Header values */
+// Header values
 - (void)setHeaderValue:(NSString *)value forField:(NSString *)field;
+- (void)removeHeaderValueForField:(NSString *)field;
 - (NSString *)headerValueForField:(NSString *)field;
+- (NSDictionary *)allHeaderValuesAndFields;
 
-/* Query values */
+// Query values
 - (void)setQueryValue:(NSString *)value forKey:(NSString *)key;
+- (void)removeQueryValueForKey:(NSString *)key;
 - (NSString *)queryValueForKey:(NSString *)key;
+- (NSDictionary *)allQueryValuesAndKeys;
 
 @end
 

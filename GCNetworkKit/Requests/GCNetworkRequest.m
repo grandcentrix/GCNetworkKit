@@ -46,7 +46,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @property (nonatomic, unsafe_unretained, readwrite) NSInteger _statusCode;
 @property (nonatomic, unsafe_unretained, readwrite) long long _downloadedContentLength;
 @property (nonatomic, unsafe_unretained, readwrite) long long _expectedContentLength;
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) UIBackgroundTaskIdentifier taskIdentifier;
 #endif
 
@@ -133,7 +133,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @synthesize _queryValues;
 @synthesize _statusCode;
 
-#if TARGET_OS_IPHONE==1
+#if TARGET_OS_IPHONE
 @synthesize taskIdentifier = _taskIdentifier;
 @synthesize continueInBackground = _continueInBackground;
 #endif
@@ -152,7 +152,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
         self._url = url;
         self.timeoutInterval = 60.0f;
         self.requestMethod = GCNetworkRequestMethodGET;
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
         self.continueInBackground = NO;
 #endif
         self.loadWhileScrolling = NO;
@@ -188,7 +188,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
             
             return;
         }
-#if TARGET_OS_IPHONE == 1 // continue in background is not needed in osx
+#if TARGET_OS_IPHONE // continue in background is not needed in osx
 
         if (self.continueInBackground) {
 			__weak GCNetworkRequest *weakReference = self;
@@ -350,7 +350,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 - (NSString *)urlHash {
     return [[[self _buildURL] absoluteString] md5Hash];
 }
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
 - (void)setContinueInBackground:(BOOL)_bool {    
     if (_bool && [[UIDevice currentDevice] isMultitaskingSupported])
         _continueInBackground = YES;
@@ -367,27 +367,57 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 #pragma mark HeaderFields
 
 - (void)setHeaderValue:(NSString *)value forField:(NSString *)field {
+    NSParameterAssert(field);
+    NSParameterAssert(value);
+
     [self._headerFields setObject:value forKey:field];
 }
 
+- (void)removeHeaderValueForField:(NSString *)field {
+    NSParameterAssert(field);
+    
+    [self._headerFields removeObjectForKey:field];
+}
+
 - (NSString *)headerValueForField:(NSString *)field {
-    return [self._headerFields objectForKey:field];
+    NSParameterAssert(field);
+
+    return [self._headerFields objectForKey:field];    
+}
+
+- (NSDictionary *)allHeaderValuesAndFields {
+    return [self._headerFields copy];
 }
 
 #pragma mark QueryValues
 
-- (void)setQueryValue:(NSString *)value forKey:(NSString *)key {    
+- (void)setQueryValue:(NSString *)value forKey:(NSString *)key {
+    NSParameterAssert(value);
+    NSParameterAssert(key);
+
     [self._queryValues setObject:[value serializedString] forKey:key];
 }
 
+- (void)removeQueryValueForKey:(NSString *)key {
+    NSParameterAssert(key);
+    
+    return [self._queryValues removeObjectForKey:key];
+}
+
 - (NSString *)queryValueForKey:(NSString *)key {
+    NSParameterAssert(key);
+    
     return [self._queryValues objectForKey:key];
+}
+
+- (NSDictionary *)allQueryValuesAndKeys {
+    return [self._queryValues copy];
 }
 
 #pragma mark Memory
 
 - (void)_cleanUp {
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
     if (self.continueInBackground) {
         if (self.taskIdentifier != UIBackgroundTaskInvalid) {            
             [[UIApplication sharedApplication] endBackgroundTask:self.taskIdentifier]; 

@@ -29,4 +29,3 @@
 #import "GCNetworkRequestQueue.h"
 #import "GCDataTransformer.h"
 #import "GCNetworkImageRequest.h"
-#import "GCNetworkRequestCache.h"

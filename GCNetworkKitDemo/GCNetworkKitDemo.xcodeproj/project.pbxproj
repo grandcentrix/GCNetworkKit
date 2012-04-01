@@ -11,7 +11,6 @@
 		2C0ED78B144C69780078D776 /* GCDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED775144C69780078D776 /* GCDataTransformer.m */; };
 		2C0ED78C144C69780078D776 /* GCNetworkAPIWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED777144C69780078D776 /* GCNetworkAPIWrapper.m */; };
 		2C0ED78D144C69780078D776 /* GCNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED779144C69780078D776 /* GCNetworkCenter.m */; };
-		2C0ED78E144C69780078D776 /* GCNetworkRequestCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */; };
 		2C0ED78F144C69780078D776 /* GCNetworkRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */; };
 		2C0ED790144C69780078D776 /* GCNetworkRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED780144C69780078D776 /* GCNetworkRequestQueue.m */; };
 		2C0ED791144C69780078D776 /* GCNetworkDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0ED783144C69780078D776 /* GCNetworkDownloadRequest.m */; };
@@ -40,8 +39,6 @@
 		2C0ED778144C69780078D776 /* GCNetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkCenter.h; sourceTree = "<group>"; };
 		2C0ED779144C69780078D776 /* GCNetworkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkCenter.m; sourceTree = "<group>"; };
 		2C0ED77A144C69780078D776 /* GCNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkKit.h; sourceTree = "<group>"; };
-		2C0ED77B144C69780078D776 /* GCNetworkRequestCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestCache.h; sourceTree = "<group>"; };
-		2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestCache.m; sourceTree = "<group>"; };
 		2C0ED77D144C69780078D776 /* GCNetworkRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestOperation.h; sourceTree = "<group>"; };
 		2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestOperation.m; sourceTree = "<group>"; };
 		2C0ED77F144C69780078D776 /* GCNetworkRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestQueue.h; sourceTree = "<group>"; };
@@ -99,8 +96,6 @@
 				2C0ED778144C69780078D776 /* GCNetworkCenter.h */,
 				2C0ED779144C69780078D776 /* GCNetworkCenter.m */,
 				2C0ED77A144C69780078D776 /* GCNetworkKit.h */,
-				2C0ED77B144C69780078D776 /* GCNetworkRequestCache.h */,
-				2C0ED77C144C69780078D776 /* GCNetworkRequestCache.m */,
 				2C0ED77D144C69780078D776 /* GCNetworkRequestOperation.h */,
 				2C0ED77E144C69780078D776 /* GCNetworkRequestOperation.m */,
 				2C0ED77F144C69780078D776 /* GCNetworkRequestQueue.h */,
@@ -263,7 +258,6 @@
 				2C0ED78B144C69780078D776 /* GCDataTransformer.m in Sources */,
 				2C0ED78C144C69780078D776 /* GCNetworkAPIWrapper.m in Sources */,
 				2C0ED78D144C69780078D776 /* GCNetworkCenter.m in Sources */,
-				2C0ED78E144C69780078D776 /* GCNetworkRequestCache.m in Sources */,
 				2C0ED78F144C69780078D776 /* GCNetworkRequestOperation.m in Sources */,
 				2C0ED790144C69780078D776 /* GCNetworkRequestQueue.m in Sources */,
 				2C0ED791144C69780078D776 /* GCNetworkDownloadRequest.m in Sources */,

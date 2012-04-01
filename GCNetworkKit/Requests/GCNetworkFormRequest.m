@@ -95,9 +95,7 @@
     __weak GCNetworkFormRequest *weakReference = self;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        while ([weakReference._writeQueue operationCount] > 0) {
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-        } 
+        [self._writeQueue waitUntilAllOperationsAreFinished];
 
         if (weakReference._cancelled)
             return;

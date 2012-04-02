@@ -1,7 +1,7 @@
 # GCNetworkKit
 
 GCNetworkKit is a helpful set of classes for interacting with a http server.
-All classes make use of ARC.
+All classes make use of ARC. In order to use it you need to drag the <GCNetworKit> folder into your xcode project. You also need to add the MobileCoreServices and the SystemConfiguration framework to your project.
 
 ## License
 
@@ -22,9 +22,6 @@ You get a network queue, fast request creation methods and much more.
 
 ### GCNetworkCenter
 This class notifies you about connection changes.
-
-### GCNetworkRequestCache
-This is a simple class for caching/loading requests.
 
 ### GCNetworkRequestOperation
 This is a NSOperation wrapper for GCNetworkRequest.

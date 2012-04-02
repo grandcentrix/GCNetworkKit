@@ -34,7 +34,6 @@
 @interface GCNetworkAPIWrapper()
 
 @property (nonatomic, strong, readwrite) GCNetworkRequestQueue *networkQueue;
-@property (nonatomic, strong, readwrite) NSString *_token;
 
 @end
 
@@ -44,7 +43,6 @@
 
 @implementation GCNetworkAPIWrapper
 @synthesize networkQueue = _networkQueue;
-@synthesize _token;
 
 #pragma mark Init
 
@@ -59,7 +57,7 @@ static NSMutableDictionary *__sharedWrappers = nil;
         NSString *key = NSStringFromClass(self);
         sharedWrapper = [__sharedWrappers objectForKey:key];
         if (!sharedWrapper) {
-            sharedWrapper = [self new];
+            sharedWrapper = [[self alloc] init];
             
             if (sharedWrapper)
                 [__sharedWrappers setObject:sharedWrapper forKey:key];
@@ -70,10 +68,8 @@ static NSMutableDictionary *__sharedWrappers = nil;
 }
 
 - (id)init {
-    if ((self = [super init])) {
-        self.networkQueue = [GCNetworkRequestQueue new];
-        self._token = [self loadToken];
-    }
+    if ((self = [super init]))
+        self.networkQueue = [[GCNetworkRequestQueue alloc] init];
     
     return self;
 }
@@ -81,15 +77,15 @@ static NSMutableDictionary *__sharedWrappers = nil;
 #pragma mark Subclasses
 
 + (NSURL *)endpoint {
-    return [NSURL URLWithString:@""];
+    return nil;
 }
 
-+ (NSString *)userAgent {
-    return NSStringFromClass([self class]);
++ (NSDictionary *)defaultHeaderValues {
+    return nil; 
 }
 
-+ (NSString *)accesstokenKey {
-    return @"access_token";
++ (NSDictionary *)defaultQueryValues {
+    return nil; 
 }
 
 #pragma mark Reachability
@@ -98,76 +94,44 @@ static NSMutableDictionary *__sharedWrappers = nil;
     return [GCNetworkCenter hostIsReachable:[[self endpoint] host]];
 }
 
-#pragma mark Simple auth.
-
-+ (NSString *)accesTokenKey {
-    return @"access_token";
-}
-
-- (void)saveToken:(NSString *)token {
-    // Subclass
-}
-
-- (void)deleteToken {
-    // Subclass  
-}
-
-- (NSString *)loadToken {
-    return nil;
-}
-
-- (BOOL)isAuthorized {
-    if (!self._token)
-        self._token = [self loadToken];
-    return self._token ? YES : NO;
-}
-
-- (void)authorize:(NSString *)accessToken {
-    self._token = accessToken;
-    [self saveToken:accessToken];
-}
-
-- (void)unauthorize {
-    self._token = nil;
-    [self deleteToken];
-}
-
 #pragma mark Requests
 
-- (GCNetworkRequest *)requestWithMethod:(NSString *)method {
+- (NSURL *)urlForMethod:(NSString *)method {
     NSString *baseString = [[[self class] endpoint] absoluteString];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseString, method]];
-    GCNetworkRequest *r = [GCNetworkRequest requestWithURL:url];
-    [r setHeaderValue:[[self class] userAgent] forField:@"User-Agent"];
+   return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseString, method]];
+}
+
+- (void)appendDefaultValuesToRequest:(id)request {
+    for (NSString *queryKey in [[[self class] defaultQueryValues] allKeys]) {
+        NSString *queryValue = [[[self class] defaultQueryValues] objectForKey:queryKey];
+        [request setQueryValue:queryValue forKey:queryKey];
+    }
     
-    if (self._token && ![self._token isEmpty])
-        [r setQueryValue:self._token forKey:[[self class] accesTokenKey]];
+    for (NSString *headerKey in [[[self class] defaultHeaderValues] allKeys]) {
+        NSString *headerValue = [[[self class] defaultHeaderValues] objectForKey:headerKey];
+        [request setQueryValue:headerValue forKey:headerKey];
+    }
+}
+
+- (GCNetworkRequest *)requestWithMethod:(NSString *)method {
+    GCNetworkRequest *request = [GCNetworkRequest requestWithURL:[self urlForMethod:method]];
+    [self appendDefaultValuesToRequest:request];
     
-    return r;
+    return request;
 }
 
 - (GCNetworkFormRequest *)formRequestWithMethod:(NSString *)method {
-    NSString *baseString = [[[self class] endpoint] absoluteString];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseString, method]];
-    GCNetworkFormRequest *r = [GCNetworkFormRequest requestWithURL:url];
-    [r setHeaderValue:[[self class] userAgent] forField:@"User-Agent"];
+    GCNetworkFormRequest *request = [GCNetworkFormRequest requestWithURL:[self urlForMethod:method]];
+    [self appendDefaultValuesToRequest:request];
     
-    if (self._token && ![self._token isEmpty])
-        [r setQueryValue:self._token forKey:[[self class] accesTokenKey]];
-    
-    return r;
+    return request;
 }
 
 - (GCNetworkDownloadRequest *)downloadedRequestWithMethod:(NSString *)method {
-    NSString *baseString = [[[self class] endpoint] absoluteString];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseString, method]];
-    GCNetworkDownloadRequest *r = [GCNetworkDownloadRequest requestWithURL:url];
-    [r setHeaderValue:[[self class] userAgent] forField:@"User-Agent"];
-    
-    if (self._token && ![self._token isEmpty])
-        [r setQueryValue:self._token forKey:[[self class] accesTokenKey]];
-    
-    return r;
+    GCNetworkDownloadRequest *request = [GCNetworkDownloadRequest requestWithURL:[self urlForMethod:method]];
+    [self appendDefaultValuesToRequest:request];
+ 
+    return request;
 }
 
 @end

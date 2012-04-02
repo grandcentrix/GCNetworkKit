@@ -41,7 +41,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 @implementation GCNetworkRequestQueue
-@synthesize maxConcurrentOperations = _maxConcurrentOperations;
+@synthesize maxConcurrentRequests = _maxConcurrentRequests;
 @synthesize _operationQueue;
 @synthesize _operations;
 
@@ -76,25 +76,25 @@
                       ofObject:(id)object 
                         change:(NSDictionary *)change
                        context:(void *)context { 
-    
     [self _doneForOperation:object];   
 }
 
 - (void)_doneForOperation:(GCNetworkRequestOperation *)operation {
+    [operation removeObserver:self forKeyPath:@"isFinished"];
     [self._operations removeObjectForKey:[operation operationHash]];
 }
 
-#pragma mark @properties
+#pragma mark @setter
 
-- (void)setMaxConcurrentOperations:(NSUInteger)maxConcurrentOperations {
-    [self._operationQueue setMaxConcurrentOperationCount:maxConcurrentOperations];
+- (void)setMaxConcurrentRequests:(NSUInteger)maxConcurrentRequests {
+    [self._operationQueue setMaxConcurrentOperationCount:maxConcurrentRequests];
 }
 
 - (BOOL)isSuspended {
     return [self._operationQueue isSuspended];
 }
 
-#pragma mark Manage Operations
+#pragma mark Manage Requests
 
 - (NSString *)addRequest:(id)request {
     GCNetworkRequestOperation *operation = [GCNetworkRequestOperation operationWithRequest:request];
@@ -108,6 +108,17 @@
     [self._operationQueue addOperation:operation];
     
     return hash;
+}
+
+- (NSArray *)allHashes {
+    return [self._operations allKeys];
+}
+- (NSArray *)allOperations {
+    return self._operationQueue.operations;
+}
+
+- (void)waitUntilAllRequestsAreFinished {
+    [self._operationQueue waitUntilAllOperationsAreFinished];
 }
 
 - (void)cancelRequestWithHash:(NSString *)hash {
@@ -136,7 +147,6 @@
 
 - (void)dealloc {
     [self cancelAllRequests];
-    
 }
 
 @end

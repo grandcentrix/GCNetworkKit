@@ -22,7 +22,7 @@
 #import "NSString+GCNetworkRequest.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#if TARGET_OS_IPHONE == 1
+#if TARGET_OS_IPHONE
 #import <MobileCoreServices/UTType.h>
 #else
 #import <CoreServices/CoreServices.h>

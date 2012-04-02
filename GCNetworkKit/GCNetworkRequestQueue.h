@@ -27,19 +27,21 @@
 
 @interface GCNetworkRequestQueue : NSObject
 
-@property (nonatomic, readwrite) NSUInteger maxConcurrentOperations;
+@property (nonatomic, readwrite) NSUInteger maxConcurrentRequests;
 @property (nonatomic, readonly, getter = isSuspended) BOOL suspended;
 
-/* Singleton */
 + (GCNetworkRequestQueue *)sharedQueue;
 
+// Request must be either a GCNetworkRequest or a subsclass of it.
 - (NSString *)addRequest:(id)request;
 
-/* Cancel single or all activities */
 - (void)cancelRequestWithHash:(NSString *)hash;
 - (void)cancelAllRequests;
 
-/* Puase / Resume all activities */
+- (NSArray *)allHashes;
+- (NSArray *)allOperations;
+
+- (void)waitUntilAllRequestsAreFinished;
 - (void)suspend;
 - (void)resume;
 

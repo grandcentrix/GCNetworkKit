@@ -24,6 +24,7 @@
 typedef void (^GCNetworkAPIWrapperDictionaryCallback)(NSDictionary *dictionary, NSError *error);
 typedef void (^GCNetworkAPIWrapperArrayCallback)(NSArray *array, NSError *error);
 typedef void (^GCNetworkAPIWrapperStringCallback)(NSString *string, NSError *error);
+typedef void (^GCNetworkAPIWrapperErrorCallback)(NSError *error);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // GCNetworkAPIWrapper
@@ -32,24 +33,20 @@ typedef void (^GCNetworkAPIWrapperStringCallback)(NSString *string, NSError *err
 @class GCNetworkRequestQueue, GCNetworkRequest, GCNetworkFormRequest, GCNetworkDownloadRequest;
 @interface GCNetworkAPIWrapper : NSObject
 
-/* A NSOperationQueue handling all network requests */
 @property (nonatomic, strong, readonly) GCNetworkRequestQueue *networkQueue;
 
-/* Singleton */
 + (id)sharedWrapper;
 
-/* Check whether the main reachpoint is available */
+// Check whether the main entpoint is reachable
 + (BOOL)endpointReachable;
 
-/* Create requests based on the endpoint, user agent and access token */
+// Create requests based on the endpoint and default header as well as query values
 - (GCNetworkRequest *)requestWithMethod:(NSString *)method;
 - (GCNetworkFormRequest *)formRequestWithMethod:(NSString *)method;
 - (GCNetworkDownloadRequest *)downloadedRequestWithMethod:(NSString *)method;
 
-/* Authorization */
-- (BOOL)isAuthorized;
-- (void)unauthorize;
-- (void)authorize:(NSString *)accessToken;
+- (NSURL *)urlForMethod:(NSString *)method;
+- (void)appendDefaultValuesToRequest:(id)request;
 
 @end
 
@@ -59,12 +56,8 @@ typedef void (^GCNetworkAPIWrapperStringCallback)(NSString *string, NSError *err
 
 @interface GCNetworkAPIWrapper (Subclassing)
 
-- (void)deleteToken;
-- (void)saveToken:(NSString *)token;
-- (NSString *)loadToken;
-
 + (NSURL *)endpoint;
-+ (NSString *)userAgent;
-+ (NSString *)accesstokenKey;
++ (NSDictionary *)defaultHeaderValues;
++ (NSDictionary *)defaultQueryValues;
 
 @end

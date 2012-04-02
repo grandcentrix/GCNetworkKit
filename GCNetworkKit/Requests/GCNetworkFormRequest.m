@@ -21,6 +21,7 @@
 
 #import "GCNetworkFormRequest.h"
 #import "NSString+GCNetworkRequest.h"
+#import "GCNetworkKit.h"
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // GCNetworkFormRequest()
@@ -92,7 +93,7 @@
 - (void)start {
     self._cancelled = NO;
 
-    __weak GCNetworkFormRequest *weakReference = self;
+    __GC_weak GCNetworkFormRequest *weakReference = self;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self._writeQueue waitUntilAllOperationsAreFinished];
@@ -132,7 +133,7 @@
     if (!string || [string isEmpty] || !key)
         return;
     
-    __weak GCNetworkFormRequest *weakReference = self;
+    __GC_weak GCNetworkFormRequest *weakReference = self;
 
     [self._writeQueue addOperationWithBlock:^{
         [weakReference _appendBodyString:weakReference._formattedBoundary];
@@ -168,7 +169,7 @@
     if (!path || [path isEmpty] || !key)
         return;
     
-    __weak GCNetworkFormRequest *weakReference = self;
+    __GC_weak GCNetworkFormRequest *weakReference = self;
     
     [self._writeQueue addOperationWithBlock:^{
         NSString *contentType = [[path pathExtension] mimeType];
@@ -218,7 +219,7 @@
     if (!data || !key)
         return;
     
-    __weak GCNetworkFormRequest *weakReference = self;
+    __GC_weak GCNetworkFormRequest *weakReference = self;
 
     [self._writeQueue addOperationWithBlock:^{
         [weakReference _appendBodyString:weakReference._formattedBoundary];

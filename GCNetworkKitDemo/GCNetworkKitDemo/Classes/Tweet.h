@@ -1,5 +1,5 @@
 //
-//  GCNetworkRequestCache.h
+//  Tweet.h
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //
@@ -20,26 +20,22 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #import <Foundation/Foundation.h>
-#import "GCNetworkRequest.h"
+
+typedef void (^TweetImageCallback)(UIImage *image);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-// GCNetworkRequestCache
+// Tweet
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-@interface GCNetworkRequestCache : NSObject
+@interface Tweet : NSObject
 
-/* Singleton */
-+ (GCNetworkRequestCache *)sharedCache;
+@property (nonatomic, strong, readonly) NSString *user;
+@property (nonatomic, strong, readonly) NSString *content;
+@property (nonatomic, unsafe_unretained, readwrite) CGFloat textHeight;
 
-- (BOOL)hasCachedDataForRequest:(GCNetworkRequest *)request;
-- (NSData *)cachedDataForRequest:(GCNetworkRequest *)request;
-- (void)cacheData:(NSData *)data forRequest:(GCNetworkRequest *)request;
-- (void)deleteCachedDataForRequest:(GCNetworkRequest *)request;
++ (NSArray *)tweetsForJSON:(NSArray *)json;
+- (id)initWihtJSON:(NSDictionary *)json;
 
-/* Removes any cached data */
-- (void)clearCache;
-
-/* Removes everything older than the given seconds */
-- (void)removeEverythingWithTimeIntervalSinceNow:(NSTimeInterval)interval;
+- (UIImage *)loadImageWithCallback:(TweetImageCallback)callback;
 
 @end

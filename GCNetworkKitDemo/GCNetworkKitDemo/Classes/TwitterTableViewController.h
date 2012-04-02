@@ -27,13 +27,15 @@
 
 @interface TwitterTableViewController : UITableViewController
 
-@property (nonatomic, retain, readwrite) NSMutableArray *tweets;
+@property (nonatomic, retain, readwrite) NSArray *tweets;
 @property (nonatomic, retain, readwrite) NSString *requestHash;
 
 - (void)loadTweets;
 - (void)cancelLoadingTweets;
 - (void)proceedTweets:(NSData *)data;
 
+// Tests
+- (void)initTests;
 + (void)uploadImage:(UIImage *)image username:(NSString *)username andPassword:(NSString *)password;
 + (void)downloadPodcastAtURL:(NSURL *)url;
 + (void)loadImageAtURL:(NSURL *)url;

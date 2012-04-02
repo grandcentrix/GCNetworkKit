@@ -21,6 +21,7 @@
 
 #import "TwitterTableViewController.h"
 #import "GCNetworkKit.h"
+#import "Tweet.h"
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // TwitterTableViewController
@@ -33,7 +34,7 @@
 #pragma mark - Twitter
 
 - (void)proceedTweets:(NSData *)data {
-    __weak TwitterTableViewController *weakReference = self;
+    __GC_weak TwitterTableViewController *weakReference = self;
 
     // Transform JSON response to something useful
     TransformJSONDataToNSObject(data, ^(id object, NSError *error){
@@ -47,20 +48,23 @@
             NSLog(@"An error occured: %@", error);
             return;
         }
-        
-        weakReference.tweets = [[results objectForKey:@"results"] mutableCopy];
+                
+        weakReference.tweets = [Tweet tweetsForJSON:[results objectForKey:@"results"]];
         [weakReference.tableView reloadData];
     });
 }
 
 - (void)loadTweets {    
-    __weak TwitterTableViewController *weakReference = self;
+    __GC_weak TwitterTableViewController *weakReference = self;
 
     // Build GCNetworkRequest
     GCNetworkRequest *request = [GCNetworkRequest requestWithURL:[NSURL URLWithString:@"http://search.twitter.com/search.json"]];
     
     // Add a query value to the request (q = Search Term)
     [request setQueryValue:@"apple" forKey:@"q"];
+    
+    // Let's grab 20 items
+    [request setQueryValue:@"20" forKey:@"rpp"];
     
     // Set completion Handler
     request.completionHandler = ^(NSData *responseData){ 
@@ -82,50 +86,15 @@
     self.requestHash = nil;
 }
 
-
 #pragma mark - View
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Non concurrent => Serialized
-    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentOperations:1];
+    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentRequests:1];
 
-
-// Various tests
-// --------------------------------------------------------------------------------------------------
-
-    BOOL tinygrabTest = NO;
-    BOOL imageTest = NO;
-    BOOL podcastTest = NO;
-    BOOL shortenTest = NO;
-    
-    // Tinygrab test
-    if (tinygrabTest)
-        [TwitterTableViewController uploadImage:[UIImage imageNamed:@"desk.png"] 
-                                       username:@"" // Your E-Mail here 
-                                    andPassword:@""]; // Your PW here
-
-    // Load Image test
-    if (imageTest) {
-        NSURL *imageURL = [NSURL URLWithString:@"https://twimg0-a.akamaihd.net/profile_images/1255560250/eightbit-29a8fc2e-8e30-4320-a42f-50173babdef0.png"];
-        [TwitterTableViewController loadImageAtURL:imageURL];
-    }
-    
-    // Load podcast test
-    if (podcastTest) {
-        NSURL *podcastURL = [NSURL URLWithString:@"http://cl.ly/0F1x3q3y0X3m0d0G1Y31"];
-        [TwitterTableViewController downloadPodcastAtURL:podcastURL];
-    }
-
-    // Shorten URL
-    if (shortenTest) {
-         NSURL *longURL = [NSURL URLWithString:@"https://github.com/Gi-lo/CCWebViewController"];
-        [TwitterTableViewController shortenURL:longURL];
-    }
-    
-// --------------------------------------------------------------------------------------------------
-    
+    [self initTests];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -140,7 +109,105 @@
     [self loadTweets];
 }
 
+#pragma mark - Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
+    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];        
+        cell.detailTextLabel.numberOfLines = 0; // Infinite
+    }
+    
+    // Fill cell
+    Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
+    cell.textLabel.text = tweet.user;
+    cell.detailTextLabel.text = tweet.content;
+    
+    // Highly unoptimized
+    cell.tag = indexPath.row;
+    cell.imageView.image = [tweet loadImageWithCallback:^(UIImage *image) {
+        if (cell.tag == indexPath.row) {
+            cell.imageView.image = image;
+            [cell setNeedsLayout]; 
+        }
+    }];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
+    
+    // Return calculated one
+    if (tweet.textHeight != 0.0f)
+        return tweet.textHeight;
+    
+    static dispatch_once_t onceToken;
+    static CGFloat screenWidth;
+    dispatch_once(&onceToken, ^{
+        screenWidth = [[UIScreen mainScreen] bounds].size.width - 60;
+    });
+    
+    // Calculate and store 
+    NSString *text = tweet.content;
+    CGSize expectedLabelSize = [text sizeWithFont:[UIFont systemFontOfSize:15]
+                                constrainedToSize:CGSizeMake(screenWidth, MAXFLOAT)
+                                    lineBreakMode:UILineBreakModeWordWrap];
+    tweet.textHeight = expectedLabelSize.height + 50.0f;
+    
+    return tweet.textHeight;
+}
+
+#pragma mark Memory
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
+    [self cancelLoadingTweets];
+}
+
+- (void)dealloc {
+    [self cancelLoadingTweets];
+}
+
 #pragma mark - Tests
+
+- (void)initTests {
+    BOOL tinygrabTest = NO;
+    BOOL imageTest = NO;
+    BOOL podcastTest = NO;
+    BOOL shortenTest = NO;
+    
+    // Tinygrab test
+    if (tinygrabTest)
+        [TwitterTableViewController uploadImage:[UIImage imageNamed:@"desk.png"] 
+                                       username:@"" // Your E-Mail here 
+                                    andPassword:@""]; // Your PW here
+    
+    // Load Image test
+    if (imageTest) {
+        NSURL *imageURL = [NSURL URLWithString:@"https://twimg0-a.akamaihd.net/profile_images/1255560250/eightbit-29a8fc2e-8e30-4320-a42f-50173babdef0.png"];
+        [TwitterTableViewController loadImageAtURL:imageURL];
+    }
+    
+    // Load podcast test
+    if (podcastTest) {
+        NSURL *podcastURL = [NSURL URLWithString:@"http://cl.ly/0F1x3q3y0X3m0d0G1Y31"];
+        [TwitterTableViewController downloadPodcastAtURL:podcastURL];
+    }
+    
+    // Shorten URL
+    if (shortenTest) {
+        NSURL *longURL = [NSURL URLWithString:@"https://github.com/Gi-lo/CCWebViewController"];
+        [TwitterTableViewController shortenURL:longURL];
+    }
+}
 
 + (void)downloadPodcastAtURL:(NSURL *)url {
     GCNetworkDownloadRequest *request = [GCNetworkDownloadRequest requestWithURL:url];
@@ -188,7 +255,7 @@
 
 + (void)shortenURL:(NSURL *)url {
     NSURL *apiURL = [NSURL URLWithString:@"http://tinyurl.com/api-create.php"];
-
+    
     GCNetworkRequest *request = [GCNetworkRequest requestWithURL:apiURL];
     [request setQueryValue:[url absoluteString] forKey:@"url"];
     request.completionHandler = ^(NSData *responseData){
@@ -197,44 +264,6 @@
         });
     };
     [request start];
-}
-
-#pragma mark - Datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tweets.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
-    
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];        
-        cell.detailTextLabel.numberOfLines = 4;
-    }
-    
-    NSDictionary *tweet = [self.tweets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [tweet objectForKey:@"from_user"];
-    cell.detailTextLabel.text = [tweet objectForKey:@"text"];
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0f;
-}
-
-#pragma mark Memory
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    [self cancelLoadingTweets];
-}
-
-- (void)dealloc {
-    [self cancelLoadingTweets];
 }
 
 @end

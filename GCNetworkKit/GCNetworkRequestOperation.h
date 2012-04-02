@@ -27,7 +27,7 @@
 
 @interface GCNetworkRequestOperation : NSOperation
 
-/* Returns MD5 hash of this operation */
+// MD5 
 @property (nonatomic, readonly) NSString *operationHash;
 
 - (id)initWithRequest:(id)request;

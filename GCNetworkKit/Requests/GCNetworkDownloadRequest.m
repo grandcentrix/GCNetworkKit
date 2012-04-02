@@ -63,7 +63,7 @@
 #pragma mark Delete
 
 - (void)deleteTMPFile {
-    __block GCNetworkDownloadRequest *blockSelf = self; // __weak does not work here. It`s zeroing the reference to early.
+    __block GCNetworkDownloadRequest *blockSelf = self; // __weak does not work here. It's zeroing the reference to early.
    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         NSFileManager *manager = [[NSFileManager alloc] init];

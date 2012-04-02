@@ -22,6 +22,7 @@
 #import "GCNetworkRequest.h"
 #import "GCNetworkCenter.h"
 #import "NSString+GCNetworkRequest.h"
+#import "GCNetworkKit.h"
 
 NSString *const GCNetworkRequestErrorDomain = @"de.GiulioPetek.GCNetworkRequest-ErrorDomain";
 NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
@@ -46,6 +47,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 @property (nonatomic, unsafe_unretained, readwrite) NSInteger _statusCode;
 @property (nonatomic, unsafe_unretained, readwrite) long long _downloadedContentLength;
 @property (nonatomic, unsafe_unretained, readwrite) long long _expectedContentLength;
+
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) UIBackgroundTaskIdentifier taskIdentifier;
 #endif
@@ -152,6 +154,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
         self._url = url;
         self.timeoutInterval = 60.0f;
         self.requestMethod = GCNetworkRequestMethodGET;
+
 #if TARGET_OS_IPHONE
         self.continueInBackground = NO;
 #endif
@@ -188,10 +191,10 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
             
             return;
         }
-#if TARGET_OS_IPHONE // continue in background is not needed in osx
-
+        
+#if TARGET_OS_IPHONE
         if (self.continueInBackground) {
-			__weak GCNetworkRequest *weakReference = self;
+			__GC_weak GCNetworkRequest *weakReference = self;
 
             UIApplication *app = [UIApplication sharedApplication];
             self.taskIdentifier = [app beginBackgroundTaskWithExpirationHandler:^{                 
@@ -347,9 +350,14 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
     return self._url;
 }
 
+- (NSURL *)fullURL {
+    return [self _buildURL];
+}
+
 - (NSString *)urlHash {
     return [[[self _buildURL] absoluteString] md5Hash];
 }
+
 #if TARGET_OS_IPHONE
 - (void)setContinueInBackground:(BOOL)_bool {    
     if (_bool && [[UIDevice currentDevice] isMultitaskingSupported])
@@ -417,6 +425,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
 #pragma mark Memory
 
 - (void)_cleanUp {
+    
 #if TARGET_OS_IPHONE
     if (self.continueInBackground) {
         if (self.taskIdentifier != UIBackgroundTaskInvalid) {            

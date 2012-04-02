@@ -87,14 +87,13 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 }
 
 - (void)_finish {
-    [self willChangeValueForKey:@"isExecuting"];
-    [self didChangeValueForKey:@"isExecuting"];
-    
-    _isExecuting = NO;
-    _isFinished = YES;
-    
     [self willChangeValueForKey:@"isFinished"];
+    _isFinished = YES;
     [self didChangeValueForKey:@"isFinished"];
+    
+    [self willChangeValueForKey:@"isExecuting"];
+    _isExecuting = NO;
+    [self didChangeValueForKey:@"isExecuting"];
 }
 
 - (void)cancel {

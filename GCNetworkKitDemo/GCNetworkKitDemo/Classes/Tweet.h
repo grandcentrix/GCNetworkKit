@@ -1,5 +1,5 @@
 //
-//  TwitterTableViewController.h
+//  Tweet.h
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //
@@ -19,26 +19,23 @@
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+typedef void (^TweetImageCallback)(UIImage *image);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-// TwitterTableViewController
+// Tweet
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-@interface TwitterTableViewController : UITableViewController
+@interface Tweet : NSObject
 
-@property (nonatomic, retain, readwrite) NSArray *tweets;
-@property (nonatomic, retain, readwrite) NSString *requestHash;
+@property (nonatomic, strong, readonly) NSString *user;
+@property (nonatomic, strong, readonly) NSString *content;
+@property (nonatomic, unsafe_unretained, readwrite) CGFloat textHeight;
 
-- (void)loadTweets;
-- (void)cancelLoadingTweets;
-- (void)proceedTweets:(NSData *)data;
++ (NSArray *)tweetsForJSON:(NSArray *)json;
+- (id)initWihtJSON:(NSDictionary *)json;
 
-// Tests
-- (void)initTests;
-+ (void)uploadImage:(UIImage *)image username:(NSString *)username andPassword:(NSString *)password;
-+ (void)downloadPodcastAtURL:(NSURL *)url;
-+ (void)loadImageAtURL:(NSURL *)url;
-+ (void)shortenURL:(NSURL *)url;
+- (UIImage *)loadImageWithCallback:(TweetImageCallback)callback;
 
 @end

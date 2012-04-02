@@ -98,22 +98,22 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 #pragma mark @properies
 
 - (void)setListen:(BOOL)_listen_ {
+    if (_listen_ == _listen)
+        return;
+    
     if (_listen_) {
         SCNetworkReachabilityContext context = { 0, (__bridge void *)(self), NULL, NULL, NULL };
         if (SCNetworkReachabilitySetCallback(self._ref, ReachabilityCallback, &context))
             SCNetworkReachabilityScheduleWithRunLoop(self._ref, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-            
-        _listen = YES;
     }
-    else {
+    else
         SCNetworkReachabilityUnscheduleFromRunLoop(self._ref, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-
-        _listen = NO;
-    }
+    
+    _listen_ = !_listen_;
 }
 
 - (BOOL)isConnected {
-    return (self.connectionType != GCNoConnection)?(YES):(NO);
+    return self.connectionType != GCNoConnection ? YES : NO;
 }
 
 #pragma mark Host Reacability
@@ -133,19 +133,32 @@ static NSInteger __count = 0;
 + (void)_refreshActivityCount {
     @synchronized(self) {
         __count = MAX(__count, 0);
+        
 #if TARGET_OS_IPHONE
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:__count > 0];
+        
+        if (__count > 0) {
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            return;
+        }
+        
+        // Wait a second to avoid flashing indicators
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+            if (__count > 0)
+                return;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
 #endif
+        
     }
 }
 
-+ (void)addNetworkActivity {
-    __count += 1;
++ (void)addNetworkActivity {    
+    __count++;
     [self _refreshActivityCount];
 }
 
 + (void)removeNetworkActivity {
-    __count -= 1;
+    __count--;
     [self _refreshActivityCount];
 }
 

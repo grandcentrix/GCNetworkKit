@@ -55,6 +55,8 @@ typedef void (^GCNetworkRequestExpirationBlock)();
 @property (nonatomic, readonly) NSString *urlHash;
 @property (nonatomic, readonly) NSString *requestHash;
 @property (nonatomic, strong, readonly) NSURL *baseURL;
+@property (nonatomic, strong, readonly) NSURL *fullURL;
+
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite, getter = isContinuingInBackground) BOOL continueInBackground;
 #endif

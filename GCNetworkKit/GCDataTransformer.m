@@ -27,6 +27,12 @@ void TransformJSONDataToNSObject(NSData *data, void (^callback)(id object, NSErr
     if (!callback)
         return;
     
+    if (![NSJSONSerialization self]) {
+        NSLog(@"TransformJSONDataToNSObject: NSJSONSerialization is only available on iOS5 and higher. Please look for alternatives like JSONKit.");
+        
+        callback(nil, nil);
+    }
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         id object = nil;
         NSError *error = nil;
@@ -62,16 +68,16 @@ void TransformNSDataToImage(NSData *data, void (^callback)(id image)) {
         return;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
-		id image = nil;
-#if TARGET_OS_IPHONE == 1
-        image = [UIImage imageWithData:data];
+        
+#if TARGET_OS_IPHONE
+        UIImage *image = [UIImage imageWithData:data];
 #else
-		image = [[NSImage alloc] initWithData:data]; // no autorelease – arc
+		NSimage *image = [[NSImage alloc] initWithData:data];
 #endif
+        
         dispatch_sync(dispatch_get_main_queue(), ^(void) {
             callback(image);
         });
-        
     }); 
 }
 
@@ -95,5 +101,4 @@ extern void TransformPlistDataToNSObject(NSData *data, void (^callback)(id objec
             callback(object, error);
         });
     });
-
 }

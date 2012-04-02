@@ -29,3 +29,9 @@
 #import "GCNetworkRequestQueue.h"
 #import "GCDataTransformer.h"
 #import "GCNetworkImageRequest.h"
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
+#define __GC_weak __weak
+#else
+#define __GC_weak __unsafe_unretained
+#endif

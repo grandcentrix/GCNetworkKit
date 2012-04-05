@@ -72,7 +72,7 @@ void TransformNSDataToImage(NSData *data, void (^callback)(id image)) {
 #if TARGET_OS_IPHONE
         UIImage *image = [UIImage imageWithData:data];
 #else
-		NSimage *image = [[NSImage alloc] initWithData:data];
+		NSImage *image = [[NSImage alloc] initWithData:data];
 #endif
         
         dispatch_sync(dispatch_get_main_queue(), ^(void) {

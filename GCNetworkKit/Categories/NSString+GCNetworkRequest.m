@@ -68,6 +68,9 @@
 - (NSString *)mimeType {
 	// Stolen from ASIHTTPRequest which is borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
 	CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self, NULL);
+	if (!UTI) {
+		return @"application/octet-stream";
+	}
 	CFStringRef MIMEType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
 	
 	CFRelease(UTI);
@@ -75,7 +78,10 @@
 		return @"application/octet-stream";
 	}
 	
-	return [NSString stringWithString:(__bridge_transfer NSString *)MIMEType];
+	NSString *mime = (__bridge NSString *)MIMEType;
+	CFRelease(MIMEType);
+	
+	return mime;
 }
 
 @end

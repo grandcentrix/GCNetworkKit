@@ -89,7 +89,7 @@
 }
 - (void)viewDidLoad {
 	// Non concurrent => Serialized
-    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentOperations:1];
+    [[GCNetworkRequestQueue sharedQueue] setMaxConcurrentRequests:1];
 	
 	
 	// Various tests

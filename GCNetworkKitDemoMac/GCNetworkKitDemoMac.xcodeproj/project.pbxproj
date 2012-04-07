@@ -16,7 +16,6 @@
 		FAC722EA14E30B24006A5D8C /* GCDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D414E30B24006A5D8C /* GCDataTransformer.m */; };
 		FAC722EB14E30B24006A5D8C /* GCNetworkAPIWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D614E30B24006A5D8C /* GCNetworkAPIWrapper.m */; };
 		FAC722EC14E30B24006A5D8C /* GCNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */; };
-		FAC722ED14E30B24006A5D8C /* GCNetworkRequestCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */; };
 		FAC722EE14E30B24006A5D8C /* GCNetworkRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */; };
 		FAC722EF14E30B24006A5D8C /* GCNetworkRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722DF14E30B24006A5D8C /* GCNetworkRequestQueue.m */; };
 		FAC722F014E30B24006A5D8C /* GCNetworkDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC722E214E30B24006A5D8C /* GCNetworkDownloadRequest.m */; };
@@ -54,8 +53,6 @@
 		FAC722D714E30B24006A5D8C /* GCNetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkCenter.h; sourceTree = "<group>"; };
 		FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkCenter.m; sourceTree = "<group>"; };
 		FAC722D914E30B24006A5D8C /* GCNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkKit.h; sourceTree = "<group>"; };
-		FAC722DA14E30B24006A5D8C /* GCNetworkRequestCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestCache.h; sourceTree = "<group>"; };
-		FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestCache.m; sourceTree = "<group>"; };
 		FAC722DC14E30B24006A5D8C /* GCNetworkRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestOperation.h; sourceTree = "<group>"; };
 		FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNetworkRequestOperation.m; sourceTree = "<group>"; };
 		FAC722DE14E30B24006A5D8C /* GCNetworkRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNetworkRequestQueue.h; sourceTree = "<group>"; };
@@ -168,8 +165,6 @@
 				FAC722D714E30B24006A5D8C /* GCNetworkCenter.h */,
 				FAC722D814E30B24006A5D8C /* GCNetworkCenter.m */,
 				FAC722D914E30B24006A5D8C /* GCNetworkKit.h */,
-				FAC722DA14E30B24006A5D8C /* GCNetworkRequestCache.h */,
-				FAC722DB14E30B24006A5D8C /* GCNetworkRequestCache.m */,
 				FAC722DC14E30B24006A5D8C /* GCNetworkRequestOperation.h */,
 				FAC722DD14E30B24006A5D8C /* GCNetworkRequestOperation.m */,
 				FAC722DE14E30B24006A5D8C /* GCNetworkRequestQueue.h */,
@@ -296,7 +291,6 @@
 				FAC722EA14E30B24006A5D8C /* GCDataTransformer.m in Sources */,
 				FAC722EB14E30B24006A5D8C /* GCNetworkAPIWrapper.m in Sources */,
 				FAC722EC14E30B24006A5D8C /* GCNetworkCenter.m in Sources */,
-				FAC722ED14E30B24006A5D8C /* GCNetworkRequestCache.m in Sources */,
 				FAC722EE14E30B24006A5D8C /* GCNetworkRequestOperation.m in Sources */,
 				FAC722EF14E30B24006A5D8C /* GCNetworkRequestQueue.m in Sources */,
 				FAC722F014E30B24006A5D8C /* GCNetworkDownloadRequest.m in Sources */,
@@ -434,6 +428,7 @@
 				FAC722CA14E30B09006A5D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,5 +1,5 @@
 //
-//  GCNetworkRequestQueue.m
+//  GCNetworkRequestOperation.m
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //
@@ -19,55 +19,122 @@
 //
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#import "GCNetworkRequestQueue.h"
 #import "GCNetworkRequestOperation.h"
+#import "GCNetworkRequest.h"
 #import "NSString+GCNetworkRequest.h"
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-// GCNetworkRequestQueue()
+//  Defines
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-@interface GCNetworkRequestQueue ()
+static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 
-@property (nonatomic, strong, readwrite) NSOperationQueue *_operationQueue;
-@property (nonatomic, strong, readwrite) NSMutableDictionary *_operations;
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// GCNetworkRequestOperation()
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-- (void)_doneForOperation:(GCNetworkRequestOperation *)operation;
+@interface GCNetworkRequestOperation () {
+@private
+    BOOL _isExecuting;
+    BOOL _isFinished;
+}
+
+@property (nonatomic, strong, readwrite) GCNetworkRequest *_request;
+
+- (void)_finish;
 
 @end
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-// GCNetworkRequestOperator
+// GCNetworkRequestOperation
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-@implementation GCNetworkRequestQueue
-@synthesize maxConcurrentRequests = _maxConcurrentRequests;
-@synthesize _operationQueue;
-@synthesize _operations;
+@implementation GCNetworkRequestOperation
+@synthesize _request;
 
 #pragma mark Init
 
-+ (GCNetworkRequestQueue *)sharedQueue {
-    static dispatch_once_t pred;
-    static GCNetworkRequestQueue *__sharedQueue = nil;
-    
-    dispatch_once(&pred, ^{
-        __sharedQueue = [[GCNetworkRequestQueue alloc] init];
-    });
-    
-    return __sharedQueue;
++ (id)operationWithRequest:(id)request {
+    GCNetworkRequestOperation *op = [[GCNetworkRequestOperation alloc] initWithRequest:request];
+    return op;
 }
 
-- (id)init {
+- (id)initWithRequest:(id)request {    
     if ((self = [super init])) {
-        self._operationQueue = [NSOperationQueue new];
-        [self._operationQueue setMaxConcurrentOperationCount:1];
-        self._operationQueue.name = @"GCNetworkRequestOperator-NSOperationQueue";        
+        self._request = request;
 		
-        self._operations = [NSMutableDictionary dictionary];
+        [self._request addObserver:self
+                        forKeyPath:@"isRunning" 
+                           options:0 
+                           context:GCNetworkRequestOperationIsRunningDidChangeContext];
+		
+        _isExecuting = NO;        
+        _isFinished = NO;
     }
     
     return self;
+}
+
+#pragma mark Start / Finish / Cancel
+
+- (void)start {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+		[self willChangeValueForKey:@"isExecuting"];
+        if ([self isCancelled]) {
+            [self._request cancel];
+			_isExecuting = NO;
+        } else {
+            [self._request start];
+			_isExecuting = YES;
+			
+			[self willChangeValueForKey:@"isFinished"];
+			_isFinished = NO;
+			[self didChangeValueForKey:@"isFinished"];
+		}
+		[self didChangeValueForKey:@"isExecuting"];
+    });
+}
+
+- (void)_finish {
+    [self willChangeValueForKey:@"isFinished"];
+    _isFinished = YES;
+    [self didChangeValueForKey:@"isFinished"];
+    
+    [self willChangeValueForKey:@"isExecuting"];
+    _isExecuting = NO;
+    [self didChangeValueForKey:@"isExecuting"];
+}
+
+- (void)cancel {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if (self.isCancelled)
+            return;
+		
+        [super cancel];
+        
+        if (self.isExecuting && !self.isFinished)
+            [self._request cancel];
+    });
+}
+
+#pragma mark Getter
+
+- (NSString *)operationHash {
+    return [[self description] md5Hash];
+}
+
+#pragma mark NSOperation
+
+- (BOOL)isExecuting {
+    return _isExecuting;
+}
+
+- (BOOL)isFinished {
+    return _isFinished;
+}
+
+- (BOOL)isConcurrent {
+    return YES;
 }
 
 #pragma mark KVO
@@ -75,86 +142,22 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath 
                       ofObject:(id)object 
                         change:(NSDictionary *)change
-                       context:(void *)context {
-	if ([(GCNetworkRequestOperation *)object isFinished])
-		[self _doneForOperation:object];
-}
-
-- (void)_doneForOperation:(GCNetworkRequestOperation *)operation {
-    [operation removeObserver:self forKeyPath:@"isFinished"];
-    [self._operations removeObjectForKey:[operation operationHash]];
-}
-
-#pragma mark @setter
-
-- (void)setMaxConcurrentRequests:(NSUInteger)maxConcurrentRequests {
-    [self._operationQueue setMaxConcurrentOperationCount:maxConcurrentRequests];
-}
-
-- (BOOL)isSuspended {
-    return [self._operationQueue isSuspended];
-}
-
-#pragma mark Manage Requests
-
-- (NSString *)addRequest:(id)request {
-    GCNetworkRequestOperation *operation = [GCNetworkRequestOperation operationWithRequest:request];
-    [operation addObserver:self
-                forKeyPath:@"isFinished" 
-                   options:0 
-                   context:NULL];
-	
-    NSString *hash = [operation operationHash];
-    [self._operations setObject:operation forKey:hash];
-    [self._operationQueue addOperation:operation];
+                       context:(void *)context { 
     
-    return hash;
-}
-
-- (NSArray *)allHashes {
-    return [self._operations allKeys];
-}
-- (NSArray *)allOperations {
-    return self._operationQueue.operations;
-}
-
-- (void)waitUntilAllRequestsAreFinished {
-    [self._operationQueue waitUntilAllOperationsAreFinished];
-}
-
-- (void)cancelRequestWithHash:(NSString *)hash {
-	NSArray *requestHashes = [self._operations.allValues valueForKeyPath:@"_request.requestHash"];
-	NSUInteger index = [requestHashes indexOfObject:hash];
-	
-	if (index == NSNotFound)
-		return;
-	
-    GCNetworkRequestOperation *operation = [self._operations objectForKey:[self.allHashes objectAtIndex:index]];
-	NSLog(@"Cancelling %@", operation);
-    if (operation)
-        [operation cancel];
-}
-
-- (void)cancelAllRequests {
-    [self._operationQueue cancelAllOperations];
-}
-
-#pragma mark Suspend / Resume
-
-- (void)suspend {
-    if (!self.isSuspended)
-        [self._operationQueue setSuspended:YES];
-}
-
-- (void)resume {
-    if (self.isSuspended)
-        [self._operationQueue setSuspended:NO];
+    if (context == GCNetworkRequestOperationIsRunningDidChangeContext) {
+        if (![self._request isRunning])
+            [self _finish];
+    }
+    else [super observeValueForKeyPath:keyPath
+                              ofObject:object
+                                change:change
+                               context:context];
 }
 
 #pragma mark Memory
 
 - (void)dealloc {
-    [self cancelAllRequests];
+    [self._request removeObserver:self forKeyPath:@"isRunning"];
 }
 
 @end

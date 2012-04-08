@@ -76,7 +76,7 @@
                       ofObject:(id)object 
                         change:(NSDictionary *)change
                        context:(void *)context {
-	if ([(GCNetworkRequestOperation *)object isFinished])
+	if ([keyPath isEqualToString:@"isFinished"] && [object isKindOfClass:[GCNetworkRequestOperation class]] && [(GCNetworkRequestOperation *)object isFinished])
 		[self _doneForOperation:object];
 }
 

@@ -318,7 +318,7 @@ NSUInteger const GCNetworkRequestUserDidCancelErrorCode = 110;
     [self._connection cancel];
 
     if (self.errorHandler)
-        self.errorHandler([GCNetworkRequest htmlErrorForCode:_statusCode], nil);
+        self.errorHandler((error.code == GCNetworkRequestUserDidCancelErrorCode) ? error : [GCNetworkRequest htmlErrorForCode:_statusCode], nil);
 
     [self _cleanUp];
 }

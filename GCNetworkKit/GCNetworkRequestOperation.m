@@ -62,12 +62,12 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 - (id)initWithRequest:(id)request {    
     if ((self = [super init])) {
         self._request = request;
-    
+		
         [self._request addObserver:self
                         forKeyPath:@"isRunning" 
                            options:0 
                            context:GCNetworkRequestOperationIsRunningDidChangeContext];
-
+		
         _isExecuting = NO;        
         _isFinished = NO;
     }
@@ -78,11 +78,21 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 #pragma mark Start / Finish / Cancel
 
 - (void)start {
+	if (self.isFinished)
+		return;
+	
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        if ([self isCancelled])
+		[self willChangeValueForKey:@"isExecuting"];
+        if ([self isCancelled]) {
             [self._request cancel];
-        else
+			
+			_isExecuting = NO;
+        } else {
             [self._request start];
+			
+			_isExecuting = YES;
+		}
+		[self didChangeValueForKey:@"isExecuting"];
     });
 }
 
@@ -100,7 +110,7 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         if (self.isCancelled)
             return;
-        
+		
         [super cancel];
         
         if (self.isExecuting && !self.isFinished)
@@ -111,7 +121,7 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 #pragma mark Getter
 
 - (NSString *)operationHash {
-    return [[self description] md5Hash];
+    return self._request.requestHash;
 }
 
 #pragma mark NSOperation

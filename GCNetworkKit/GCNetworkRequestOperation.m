@@ -78,18 +78,19 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 #pragma mark Start / Finish / Cancel
 
 - (void)start {
+	if (self.isFinished)
+		return;
+	
     dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self willChangeValueForKey:@"isExecuting"];
         if ([self isCancelled]) {
             [self._request cancel];
+			
 			_isExecuting = NO;
         } else {
             [self._request start];
-			_isExecuting = YES;
 			
-			[self willChangeValueForKey:@"isFinished"];
-			_isFinished = NO;
-			[self didChangeValueForKey:@"isFinished"];
+			_isExecuting = YES;
 		}
 		[self didChangeValueForKey:@"isExecuting"];
     });

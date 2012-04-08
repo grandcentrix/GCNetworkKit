@@ -123,13 +123,7 @@
 }
 
 - (void)cancelRequestWithHash:(NSString *)hash {
-	NSArray *requestHashes = [self._operations.allValues valueForKeyPath:@"_request.requestHash"];
-	NSUInteger index = [requestHashes indexOfObject:hash];
-	
-	if (index == NSNotFound)
-		return;
-	
-    GCNetworkRequestOperation *operation = [self._operations objectForKey:[self.allHashes objectAtIndex:index]];
+    GCNetworkRequestOperation *operation = [self._operations objectForKey:hash];
 	
     if (operation)
         [operation cancel];

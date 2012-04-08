@@ -121,7 +121,7 @@ static void *GCNetworkRequestOperationIsRunningDidChangeContext;
 #pragma mark Getter
 
 - (NSString *)operationHash {
-    return [[self description] md5Hash];
+    return self._request.requestHash;
 }
 
 #pragma mark NSOperation

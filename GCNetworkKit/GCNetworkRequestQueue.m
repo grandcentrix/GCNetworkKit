@@ -130,7 +130,7 @@
 		return;
 	
     GCNetworkRequestOperation *operation = [self._operations objectForKey:[self.allHashes objectAtIndex:index]];
-	NSLog(@"Cancelling %@", operation);
+	
     if (operation)
         [operation cancel];
 }

@@ -35,7 +35,7 @@
 - (void)_doneForOperation:(GCNetworkRequestOperation *)operation;
 
 @end
-    
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // GCNetworkRequestOperator
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -63,7 +63,7 @@
         self._operationQueue = [NSOperationQueue new];
         [self._operationQueue setMaxConcurrentOperationCount:1];
         self._operationQueue.name = @"GCNetworkRequestOperator-NSOperationQueue";        
-  
+		
         self._operations = [NSMutableDictionary dictionary];
     }
     
@@ -75,8 +75,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath 
                       ofObject:(id)object 
                         change:(NSDictionary *)change
-                       context:(void *)context { 
-    [self _doneForOperation:object];   
+                       context:(void *)context {
+	if ([(GCNetworkRequestOperation *)object isFinished])
+		[self _doneForOperation:object];
 }
 
 - (void)_doneForOperation:(GCNetworkRequestOperation *)operation {
@@ -102,7 +103,7 @@
                 forKeyPath:@"isFinished" 
                    options:0 
                    context:NULL];
-
+	
     NSString *hash = [operation operationHash];
     [self._operations setObject:operation forKey:hash];
     [self._operationQueue addOperation:operation];
@@ -122,13 +123,14 @@
 }
 
 - (void)cancelRequestWithHash:(NSString *)hash {
-	NSArray *requestHashes = [[self._operations allValues] valueForKeyPath:@"_request.requestHash"];
+	NSArray *requestHashes = [self._operations.allValues valueForKeyPath:@"_request.requestHash"];
 	NSUInteger index = [requestHashes indexOfObject:hash];
 	
 	if (index == NSNotFound)
 		return;
 	
     GCNetworkRequestOperation *operation = [self._operations objectForKey:[self.allHashes objectAtIndex:index]];
+	NSLog(@"Cancelling %@", operation);
     if (operation)
         [operation cancel];
 }
